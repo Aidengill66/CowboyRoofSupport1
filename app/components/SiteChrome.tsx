@@ -123,11 +123,12 @@ export function SiteHeader() {
         })}
         <Link className="nav-directory-link" href="/directory"><i/>All files</Link>
         <button className="site-search-trigger" type="button" onClick={() => window.dispatchEvent(new CustomEvent('crs:open-search'))} aria-label="Search the entire Cowboy Roof Support site"><span>⌕</span>FIND<kbd>⌘K</kbd></button>
+        <Link className="my-roof-nav-link" href="/project-center#my-roof"><i>◆</i>MY ROOF</Link>
         <Link className="ai-nav-link" href="/roof-advisor"><i/>Roof Copilot</Link>
       </nav>
       <Link className="nav-cta" href="/free-inspection">FREE INSPECTION <span>→</span></Link>
     </header>
-    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/growth"><span>GROWTH</span></Link><Link href="/leads"><span>LEADS</span></Link><Link href="/network"><span>NETWORK</span></Link><Link href="/operations"><span>OPERATIONS</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
+    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/project-center#my-roof"><span>MY ROOF</span></Link><Link href="/leads"><span>LEADS</span></Link><Link href="/network"><span>NETWORK</span></Link><Link href="/operations"><span>OPERATIONS</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
     <div className="mobile-contact-bar" aria-label="Mobile contact actions"><a href="tel:+14708342519"><small>LEAK OR STORM?</small><b>CALL NOW</b></a><Link href="/free-inspection"><small>60-SECOND START</small><b>FREE QUOTE</b></Link></div>
     <CowboyCopilot path={path}/>
   </>;

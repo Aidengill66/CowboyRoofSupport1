@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { CustomerProjectCenter } from '../components/CustomerProjectCenter';
 
 type Mode = 'route' | 'schedule' | 'prepare' | 'status';
 
@@ -62,6 +63,8 @@ export default function ProjectCenterPage() {
 
   return <main className="command-page">
     <section className="command-intro"><div className="shell"><div><p className="eyebrow light">COWBOY ROOF COMMAND CENTER</p><h1>One place.<br/><em>Every next step.</em></h1><p>Route the job, check the service area, request an inspection window, prepare the property, or understand exactly where a project stands.</p></div><aside><i/><span><small>SYSTEM</small>READY</span><span><small>REGION</small>NORTH ATLANTA</span><span><small>HANDOFFS</small>6 CONTROLLED STAGES</span></aside></div></section>
+
+    <CustomerProjectCenter />
 
     <section id="command-workspace" className="command-app shell">
       <nav aria-label="Project center tools">{[
