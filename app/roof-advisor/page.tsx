@@ -55,7 +55,15 @@ export default function RoofAdvisorPage() {
   }, [age, issue, priority, slope, attic, trees]);
 
   return <main className="advisor-page">
-    <section className="advisor-hero"><div className="shell"><div><p className="eyebrow light">COWBOY ROOF INTELLIGENCE</p><h1>Cowboy instinct.<br/><em>Roofer intelligence.</em></h1><p>Tell us how the roof is built, what it is doing, and what matters most. The advisor assembles an expert starting point for North Atlanta conditions.</p></div><div className="advisor-badge"><span>EXPERT LOGIC</span><b>6</b><small>ROOF FACTORS<br/>ANALYZED LIVE</small></div></div></section>
+    <section className="advisor-hero"><div className="shell"><div><p className="eyebrow light">COWBOY ROOF INTELLIGENCE</p><h1>Cowboy instinct.<br/><em>Roofer intelligence.</em></h1><p>Tell us how the roof is built, what it is doing, and what matters most. The advisor combines your six field inputs while Cowboy AI remembers details, handles common typos, and routes deeper questions through a curated North Atlanta roofing knowledge base.</p></div><div className="advisor-badge intelligence-badge"><img src="/cowboy-roof-logo-v2-256.png" alt="Cowboy Roof Support hat, roof, and boots emblem"/><span>NO EXTERNAL API</span><small>CURATED ROOF LOGIC<br/>PRIVATE SESSION</small></div></div></section>
+    <section className="advisor-protocol shell" aria-label="Advisor accuracy protocol">
+      <header><p className="eyebrow">HOW IT STAYS ACCURATE</p><h2>Smart enough to help.<br/>Honest enough to stop.</h2><p>This prototype does not pretend it can see the roof, current weather, codes, policy coverage, or live schedules. It organizes the decision, explains the system, and sends field-only questions to an inspection.</p></header>
+      <div>
+        <article><span>01</span><small>SAFETY GATE</small><h3>Danger comes first.</h3><p>Sagging ceilings, water near electricity, active leaks, and storm hazards override sales routing.</p></article>
+        <article><span>02</span><small>CONTEXT MEMORY</small><h3>Each answer gets sharper.</h3><p>Roof age, symptom, property type, material, city, and priorities stay in the current private chat.</p></article>
+        <article><span>03</span><small>FIELD TRUTH</small><h3>No fake certainty.</h3><p>Diagnosis, price, code, coverage, and final scope remain clearly marked for field or professional verification.</p></article>
+      </div>
+    </section>
     <section className="advisor-workbench shell">
       <div className="advisor-controls"><div className="advisor-heading"><span>01</span><div><small>TELL US ABOUT THE ROOF</small><h2>Field questions first.</h2></div></div>
         <label className="advisor-age"><span>APPROXIMATE ROOF AGE <b>{age} YEARS</b></span><input type="range" min="0" max="35" value={age} onChange={(e)=>setAge(Number(e.target.value))}/><i><small>NEW</small><small>PLAN AHEAD</small><small>REPLACEMENT RANGE</small></i></label>

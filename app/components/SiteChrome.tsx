@@ -7,7 +7,7 @@ import { CowboyCopilot } from './CowboyCopilot';
 import { navigationGroups } from '../site-directory';
 
 function BrandMark() {
-  return <span className="brand-mark" aria-hidden="true"><i className="crest-hat"/><i className="crest-roof"/><i className="crest-boot left"/><i className="crest-boot right"/></span>;
+  return <span className="brand-mark" aria-hidden="true"><img src="/cowboy-roof-logo-v2-256.png" alt="" /></span>;
 }
 
 export function SiteHeader() {
@@ -122,7 +122,7 @@ export function SiteHeader() {
           </div>;
         })}
         <Link className="nav-directory-link" href="/directory"><i/>All files</Link>
-        <Link className="ai-nav-link" href="/roof-advisor"><i/>AI Advisor</Link>
+        <Link className="ai-nav-link" href="/roof-advisor"><i/>Roof Copilot</Link>
       </nav>
       <Link className="nav-cta" href="/free-inspection">FREE INSPECTION <span>→</span></Link>
     </header>

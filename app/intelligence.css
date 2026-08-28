@@ -1,0 +1,447 @@
+/* Cowboy Roof Support — original brand mark and no-API roof intelligence */
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.brand-mark::after,
+.brand-mark .crest-hat,
+.brand-mark .crest-roof,
+.brand-mark .crest-boot {
+  display: none;
+}
+
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px #0008);
+}
+
+.brand.inverse .brand-mark img {
+  width: 62px;
+  height: 62px;
+}
+
+.intelligence-badge {
+  width: 238px;
+  height: 238px;
+  transform: rotate(2deg);
+  border-color: #9b6648;
+  outline-color: #4e7652;
+  background: radial-gradient(circle, #122118 0, #09100c 70%);
+}
+
+.intelligence-badge img {
+  width: 112px;
+  height: 112px;
+  margin: -14px 0 -2px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px #000b);
+}
+
+.intelligence-badge span {
+  color: #e3a174;
+}
+
+.advisor-protocol {
+  padding: 95px 0 0;
+}
+
+.advisor-protocol > header {
+  display: grid;
+  grid-template-columns: 1.05fr .65fr;
+  column-gap: 75px;
+  align-items: end;
+}
+
+.advisor-protocol > header .eyebrow {
+  grid-column: 1 / 3;
+}
+
+.advisor-protocol h2 {
+  margin: 0;
+  font: 500 clamp(49px, 5vw, 72px) / .91 Georgia, serif;
+  letter-spacing: -.05em;
+}
+
+.advisor-protocol > header > p:last-child {
+  margin: 0;
+  color: #67716b;
+  font: 14px/1.7 Georgia, serif;
+}
+
+.advisor-protocol > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 42px;
+  border-top: 1px solid #cbd0cb;
+  border-left: 1px solid #cbd0cb;
+}
+
+.advisor-protocol article {
+  min-height: 235px;
+  padding: 28px;
+  border-right: 1px solid #cbd0cb;
+  border-bottom: 1px solid #cbd0cb;
+  background: #f5f6f2;
+}
+
+.advisor-protocol article > span {
+  float: right;
+  color: #a2aaa4;
+  font: 25px Georgia, serif;
+}
+
+.advisor-protocol article small {
+  color: #a85a34;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.advisor-protocol article h3 {
+  margin: 48px 0 13px;
+  font: 500 28px/1 Georgia, serif;
+  letter-spacing: -.03em;
+}
+
+.advisor-protocol article p {
+  margin: 0;
+  color: #6e7671;
+  font: 12px/1.6 Georgia, serif;
+}
+
+.copilot-launch {
+  width: 268px;
+  min-height: 66px;
+  grid-template-columns: 44px 1fr 22px;
+  padding: 8px 13px 8px 9px;
+  border-color: #564c34;
+  background: linear-gradient(135deg, #07100a 0%, #111914 70%, #26170f 100%);
+  box-shadow: 0 16px 55px #0007, inset 0 1px #ffffff12;
+}
+
+.copilot-launch > img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px #0009);
+}
+
+.copilot-launch > span small {
+  color: #e3a06d;
+}
+
+.copilot-launch > strong {
+  color: var(--signal-soft);
+}
+
+.copilot-panel.copilot-v2 {
+  width: min(475px, calc(100vw - 32px));
+  height: min(735px, calc(100vh - 122px));
+  grid-template-rows: 72px 40px 1fr auto 64px 28px;
+  border-color: #504936;
+  background:
+    linear-gradient(#ffffff05 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff05 1px, transparent 1px),
+    #08100b;
+  background-size: 38px 38px;
+}
+
+.copilot-v2 > header {
+  background: #080d0aee;
+  padding: 0 14px;
+}
+
+.copilot-v2 > header > div:first-child {
+  min-width: 0;
+}
+
+.copilot-v2 > header img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 9px #0009);
+}
+
+.copilot-v2 > header b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e6aa7f;
+}
+
+.copilot-v2 > header b i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px #76b90018;
+}
+
+.copilot-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.copilot-v2 > header .copilot-header-actions button {
+  width: auto;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0 8px;
+  border: 1px solid #2f3c32;
+  color: #aeb9b0;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.copilot-v2 > header .copilot-header-actions button:last-child {
+  font-size: 17px;
+  border-color: transparent;
+}
+
+.copilot-memory {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 0 17px;
+  border-bottom: 1px solid #273329;
+  background: #111915;
+}
+
+.copilot-memory small {
+  color: #d28a60;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.copilot-memory b {
+  min-width: 0;
+  overflow: hidden;
+  color: #839087;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copilot-v2 .copilot-feed {
+  padding: 17px 16px 22px;
+}
+
+.copilot-v2 .chat-message {
+  max-width: 94%;
+  padding: 14px 15px;
+  border-color: #2f3a31;
+  box-shadow: 0 10px 28px #0002;
+}
+
+.copilot-v2 .chat-message.user {
+  max-width: 86%;
+  background: #23331f;
+  border-color: #4c613f;
+}
+
+.copilot-v2 .chat-message p {
+  color: #d7ded8;
+  font: 12px/1.62 Georgia, serif;
+}
+
+.copilot-v2 .chat-message ol {
+  margin: 12px 0 0;
+  padding: 11px 0 0 25px;
+  border-top: 1px solid #314035;
+  color: #aebbb0;
+}
+
+.copilot-v2 .chat-message li {
+  padding: 0 0 6px 4px;
+  font: 10px/1.45 Arial, sans-serif;
+}
+
+.reply-readout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 7px 0 2px;
+  padding: 8px 9px;
+  border-left: 2px solid #c46e42;
+  background: #0c130e;
+}
+
+.reply-readout span,
+.reply-readout b {
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.reply-readout span {
+  color: #e0a07b;
+}
+
+.reply-readout b {
+  color: var(--signal-soft);
+  text-align: right;
+}
+
+.copilot-v2 .copilot-prompts {
+  padding: 10px 16px 12px;
+  background: #0a110c;
+}
+
+.copilot-v2 .copilot-prompts > div {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.copilot-v2 .copilot-prompts button {
+  min-height: 49px;
+  gap: 6px;
+  align-items: center;
+  font-size: 6px;
+  line-height: 1.35;
+}
+
+.copilot-v2 > form {
+  grid-template-columns: 1fr 58px;
+  background: #111814;
+}
+
+.copilot-v2 > form input {
+  min-width: 0;
+  font-size: 10px;
+}
+
+.copilot-v2 > form button:disabled {
+  cursor: not-allowed;
+  opacity: .35;
+}
+
+.copilot-v2 > footer {
+  gap: 8px;
+  color: #6e7b70;
+}
+
+.copilot-v2 > footer i {
+  color: #b56a43;
+  font-style: normal;
+}
+
+@media (max-width: 760px) {
+  .brand-mark {
+    width: 43px;
+    height: 43px;
+    flex-basis: 43px;
+  }
+
+  .brand > span:last-child {
+    font-size: 11px;
+  }
+
+  .advisor-protocol {
+    padding-top: 70px;
+  }
+
+  .advisor-protocol > header {
+    display: block;
+  }
+
+  .advisor-protocol h2 {
+    font-size: 49px;
+  }
+
+  .advisor-protocol > header > p:last-child {
+    margin-top: 24px;
+  }
+
+  .advisor-protocol > div {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+
+  .advisor-protocol article {
+    min-height: 210px;
+  }
+
+  .copilot-launch {
+    width: 56px;
+    min-height: 56px;
+    padding: 4px;
+    grid-template-columns: 1fr;
+    border-radius: 50%;
+  }
+
+  .copilot-launch > img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .copilot-launch > span,
+  .copilot-launch > strong {
+    display: none;
+  }
+
+  .copilot-panel.copilot-v2 {
+    position: fixed;
+    inset: 31px 7px 66px;
+    width: auto;
+    height: auto;
+    grid-template-rows: 68px 39px 1fr auto 61px 25px;
+  }
+
+  .copilot-v2 > header img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .copilot-v2 .copilot-prompts > div {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .copilot-v2 .copilot-prompts button {
+    min-width: 145px;
+  }
+
+  .copilot-v2 > footer {
+    font-size: 4px;
+  }
+}
+
+@media (max-width: 410px) {
+  .brand > span:last-child {
+    display: none;
+  }
+
+  .copilot-v2 > header small {
+    font-size: 5px;
+  }
+
+  .copilot-v2 > header b {
+    font-size: 4px;
+  }
+
+  .copilot-memory {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copilot-v2 .copilot-feed {
+    scroll-behavior: auto;
+  }
+}

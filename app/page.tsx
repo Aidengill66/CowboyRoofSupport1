@@ -6,7 +6,7 @@ import { BeforeAfter } from './components/BeforeAfter';
 export default function Home() {
   return <main>
     <section className="home-hero">
-      <div className="hero-copy"><p className="eyebrow">COWBOY ROOF OS · NORTH ATLANTA</p><h1>A better roof.<br/><em>Built intelligently.</em></h1><p>Expert material logic, context-aware guidance, and a hands-on crew. Every tool has one job—and every button takes you to the useful next step.</p><div className="actions"><Link className="primary" href="/roof-advisor">RUN ROOF ADVISOR <span>→</span></Link><Link className="text-link" href="/start">START A PROJECT</Link></div><div className="hero-signals"><span><i/>ROOF COPILOT ONLINE</span><span>6 FACTORS</span><span>9 CLEAR SECTIONS</span></div></div>
+      <div className="hero-copy"><p className="eyebrow">COWBOY ROOF OS · NORTH ATLANTA</p><h1>A better roof.<br/><em>Built intelligently.</em></h1><p>Expert material logic, a smarter no-API Roof Copilot, and a hands-on crew. Every tool has one job—and every answer tells you what is known, what is likely, and what still needs a field check.</p><div className="actions"><Link className="primary" href="/roof-advisor">RUN ROOF ADVISOR <span>→</span></Link><Link className="text-link" href="/start">START A PROJECT</Link></div><div className="hero-signals"><span><i/>ROOF COPILOT ONLINE</span><span>19 EXPERT PATHS</span><span>NO EXTERNAL API</span></div></div>
       <HeroEstimateForm />
     </section>
     <section className="emergency-banner"><div><span className="emergency-pulse"/><small>LEAK OR STORM DAMAGE?</small><strong>Protect people and property first. Never climb onto a wet or damaged roof.</strong></div><a href="tel:+14708342519"><small>CALL THE PRIORITY LINE</small>(470) 834-2519 <span>→</span></a></section>
