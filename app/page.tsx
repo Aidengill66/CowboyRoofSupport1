@@ -1,30 +1,61 @@
-const services = [
-  ['Roof repair', 'Leaks, missing shingles, flashing failures, and the small problems that can turn expensive fast.'],
-  ['Roof replacement', 'A clear, no-pressure plan for a durable roof that fits your home and your budget.'],
-  ['Storm response', 'Fast help after hail, wind, and heavy weather—plus guidance through the insurance process.'],
+'use client';
+
+import { useMemo, useState } from 'react';
+
+const jobs = [
+  { icon: '⌁', name: 'Roof repair', note: 'Leaks, flashing & shingles', price: 'From $350', tag: 'Most booked' },
+  { icon: '⌂', name: 'New roof', note: 'Full replacement options', price: 'Free quote', tag: 'Best value' },
+  { icon: 'ϟ', name: 'Storm check', note: 'Hail & wind inspection', price: 'Free check', tag: 'Fast response' },
+  { icon: '◫', name: 'Gutters', note: 'Repair, clean or replace', price: 'From $225', tag: 'Easy add-on' },
 ];
 
+const towns = ['Alpharetta', 'Roswell', 'Cumming', 'Milton', 'Johns Creek', 'Woodstock'];
+
 export default function Home() {
+  const [selected, setSelected] = useState('Roof repair');
+  const [town, setTown] = useState('Alpharetta');
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const job = useMemo(() => jobs.find((item) => item.name === selected)!, [selected]);
+
   return (
     <main>
-      <div className="topbar">Storm damage? We’re ready to help. <a href="#quote">Request an inspection →</a></div>
-      <nav className="nav shell" aria-label="Main navigation">
-        <a className="brand" href="#top" aria-label="Cowboy Roof Support home"><span className="brand-mark">CR</span><span>COWBOY <small>ROOF SUPPORT</small></span></a>
-        <div className="navlinks"><a href="#services">Services</a><a href="#process">Our process</a><a href="#about">Why us</a></div>
-        <a className="button button-small" href="#quote">Free estimate</a>
-      </nav>
+      <header className="nav wrap">
+        <a className="brand" href="#top"><span className="brand-stamp">CRS</span><span>COWBOY<small>ROOF SUPPORT</small></span></a>
+        <div className="area-pill"><span>●</span> Serving North Atlanta</div>
+        <a className="pro-link" href="#pros">Roofers: join the crew →</a>
+      </header>
+
       <section className="hero" id="top">
-        <div className="hero-grid shell">
-          <div className="hero-copy"><p className="eyebrow">ROOFING DONE THE COWBOY WAY</p><h1>We’ve got your roof<br/><em>covered.</em></h1><p className="lead">Straight answers. Solid workmanship. No runaround. Cowboy Roof Support protects the place you call home.</p><div className="actions"><a className="button" href="#quote">Get my free estimate <span>→</span></a><a className="text-link" href="#services">Explore our services ↓</a></div><div className="trust-row"><span>✓ Clear estimates</span><span>✓ Quality materials</span><span>✓ Built to last</span></div></div>
-          <div className="hero-art" aria-label="Stylized illustration of a protected home roof"><div className="sun"/><div className="cloud cloud-one"/><div className="cloud cloud-two"/><div className="roof"><div className="chimney"/><div className="roof-line"/></div><div className="house"><div className="window"/><div className="door"/></div><div className="badge"><b>DEPENDABLE</b><span>FROM RIDGE TO GUTTER</span></div></div>
+        <div className="wrap hero-grid">
+          <div className="hero-copy">
+            <p className="kicker">THE NORTH ATLANTA ROOFING MARKETPLACE</p>
+            <h1>Round up the right<br/><em>roofing help.</em></h1>
+            <p className="lede">Pick the job. Tell us where. Get a clear path forward from local roofing pros—without chasing down five companies.</p>
+            <div className="quick-proof"><span>✓ Local crews</span><span>✓ Clear next steps</span><span>✓ No-pressure help</span></div>
+          </div>
+
+          <div className="matcher" aria-label="Roofing service matcher">
+            <div className="matcher-head"><span>JOB BOARD</span><b>{step} / 2</b></div>
+            {!submitted ? <>
+              {step === 1 ? <div className="match-body"><h2>What needs wranglin’?</h2><p>Choose the closest match. You can add details later.</p><div className="job-picks">{jobs.map((item) => <button key={item.name} className={selected === item.name ? 'active' : ''} onClick={() => setSelected(item.name)}><span>{item.icon}</span><b>{item.name}</b></button>)}</div><button className="primary" onClick={() => setStep(2)}>Next: your area →</button></div>
+              : <div className="match-body"><button className="back" onClick={() => setStep(1)}>← Back</button><h2>Where’s the homestead?</h2><p>We’re focused on North Atlanta and nearby communities.</p><label>Choose your city<select value={town} onChange={(e) => setTown(e.target.value)}>{towns.map((item) => <option key={item}>{item}</option>)}</select></label><div className="match-summary"><span>{job.icon}</span><div><small>YOUR REQUEST</small><b>{selected} in {town}</b></div><strong>{job.price}</strong></div><button className="primary" onClick={() => setSubmitted(true)}>Find my roofing help →</button></div>}
+            </> : <div className="match-body success"><div className="lasso">✓</div><p className="kicker">REQUEST ROUNDED UP</p><h2>You’re on the board.</h2><p>Your {selected.toLowerCase()} request for {town} is ready. The full marketplace will connect this step to local availability and quotes.</p><button className="secondary" onClick={() => {setSubmitted(false);setStep(1)}}>Start another request</button></div>}
+          </div>
         </div>
-        <div className="hero-footer shell"><span>Residential roofing</span><span>•</span><span>Repairs & replacements</span><span>•</span><span>Storm damage support</span></div>
       </section>
-      <section className="services shell" id="services"><div className="section-heading"><div><p className="eyebrow">HOW WE CAN HELP</p><h2>Hardworking roofs.<br/>Honest service.</h2></div><p>From the first inspection to the final cleanup, you’ll always know what’s happening and why.</p></div><div className="service-grid">{services.map((service, i) => <article className="service-card" key={service[0]}><span className="service-no">0{i + 1}</span><div className={`service-icon icon-${i}`}><span/></div><h3>{service[0]}</h3><p>{service[1]}</p><a href="#quote">Talk to a roofer →</a></article>)}</div></section>
-      <section className="process" id="process"><div className="shell process-grid"><div><p className="eyebrow light">A BETTER ROOFING EXPERIENCE</p><h2>Simple from<br/>start to finish.</h2><p className="process-copy">Good roofing starts with good communication. We keep the process clear and your property respected.</p></div><ol><li><b>01</b><div><h3>We take a look</h3><p>A thorough roof inspection and an honest explanation of what we find.</p></div></li><li><b>02</b><div><h3>You get a clear plan</h3><p>Options, materials, timeline, and pricing—laid out without the fine-print rodeo.</p></div></li><li><b>03</b><div><h3>We get it done right</h3><p>Careful installation, a clean jobsite, and a final walk-through with you.</p></div></li></ol></div></section>
-      <section className="about shell" id="about"><div className="about-art"><span>YOUR HOME<br/>DESERVES<br/><b>THE GOOD STUFF.</b></span></div><div><p className="eyebrow">WHY COWBOY ROOF SUPPORT</p><h2>No gimmicks.<br/>Just a roof you trust.</h2><p>We believe a roofing company should show up, tell the truth, and stand behind the work. That’s the whole idea behind Cowboy Roof Support.</p><div className="proof"><div><b>Clear</b><span>communication</span></div><div><b>Careful</b><span>property protection</span></div><div><b>Clean</b><span>final walkthrough</span></div></div></div></section>
-      <section className="quote" id="quote"><div className="shell quote-grid"><div><p className="eyebrow light">LET’S TALK ABOUT YOUR ROOF</p><h2>Ready to get<br/>this handled?</h2><p>Tell us what’s going on. We’ll follow up to schedule your free roof assessment.</p></div><form><label>Name<input name="name" placeholder="Your name" required/></label><label>Phone or email<input name="contact" placeholder="How should we reach you?" required/></label><label>What do you need?<select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>Roof repair</option><option>Roof replacement</option><option>Storm damage inspection</option><option>Not sure yet</option></select></label><button className="button" type="submit">Request my free estimate →</button><small>Prototype form — connect this to your preferred inbox or CRM before launch.</small></form></div></section>
-      <footer className="shell"><a className="brand" href="#top"><span className="brand-mark">CR</span><span>COWBOY <small>ROOF SUPPORT</small></span></a><p>Built on straight talk and solid work.</p><p>© 2026 Cowboy Roof Support</p></footer>
+
+      <section className="market wrap" id="market">
+        <div className="section-title"><div><p className="kicker">SHOP ROOFING SERVICES</p><h2>Pick a job.<br/>We’ll help saddle it.</h2></div><p>Simple starting points for the work North Atlanta homeowners request most.</p></div>
+        <div className="cards">{jobs.map((item) => <article key={item.name}><div className="card-top"><span className="job-icon">{item.icon}</span><span className="tag">{item.tag}</span></div><h3>{item.name}</h3><p>{item.note}</p><div className="card-foot"><b>{item.price}</b><button onClick={() => {setSelected(item.name);setStep(2);setSubmitted(false);document.getElementById('top')?.scrollIntoView()}}>Choose job →</button></div></article>)}</div>
+      </section>
+
+      <section className="how"><div className="wrap how-grid"><div><p className="kicker gold">HOW THE TRAIL WORKS</p><h2>Three steps.<br/>No rodeo.</h2></div><div className="trail"><div><b>1</b><span><strong>Post the job</strong><small>Tell us what the roof is doing.</small></span></div><i>→</i><div><b>2</b><span><strong>See your options</strong><small>Compare the right kind of help.</small></span></div><i>→</i><div><b>3</b><span><strong>Get it handled</strong><small>Choose your next step with confidence.</small></span></div></div></div></section>
+
+      <section className="local wrap"><div className="local-copy"><p className="kicker">OUR HOME RANGE</p><h2>North Atlanta,<br/>we ride for you.</h2><p>Built for homeowners across the northern arc of metro Atlanta—from Roswell rooftops to growing neighborhoods in Cumming.</p></div><div className="town-board">{towns.map((item, i) => <button key={item} onClick={() => {setTown(item);setStep(2);document.getElementById('top')?.scrollIntoView()}}><span>0{i + 1}</span>{item}<b>→</b></button>)}</div></section>
+
+      <section className="pros" id="pros"><div className="wrap pro-grid"><div className="brand-stamp large">CRS</div><div><p className="kicker gold">FOR NORTH ATLANTA ROOFERS</p><h2>Good crews belong on the board.</h2><p>The marketplace side of Cowboy Roof Support can help qualified local roofing teams find the right jobs—not just more noise.</p></div><button className="light-button">Join the founding crew →</button></div></section>
+      <footer className="wrap"><span>© 2026 Cowboy Roof Support</span><b>North Atlanta’s roofing job board</b><a href="#top">Back to top ↑</a></footer>
     </main>
   );
 }

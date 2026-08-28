@@ -3,17 +3,17 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cowboyroofsupport.com'),
-  title: 'Cowboy Roof Support | Straight-Talking Roofing Help',
-  description: 'Roof repair, replacement, and storm damage support with clear estimates and dependable service.',
+  title: 'Cowboy Roof Support | North Atlanta Roofing Marketplace',
+  description: 'Find practical roofing help across North Atlanta. Choose the job, select your city, and get matched with the right next step.',
   openGraph: {
     title: 'Cowboy Roof Support',
-    description: 'Straight answers. Solid workmanship.',
+    description: 'North Atlanta’s roofing marketplace.',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Cowboy Roof Support',
-    description: 'Straight answers. Solid workmanship.',
+    description: 'North Atlanta’s roofing marketplace.',
     images: ['/og.png'],
   },
 };
