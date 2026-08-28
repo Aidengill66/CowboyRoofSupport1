@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { CowboyCopilot } from './CowboyCopilot';
 
 const groups = [
   {
@@ -56,11 +57,12 @@ export function SiteHeader() {
           <summary>{group.label} <span>⌄</span></summary>
           <div className="drop-panel mega-v2"><div className="drop-feature"><small>{group.kicker}</small><Link href={group.feature.href}><span className="drop-number">C</span><b>{group.feature.name}</b><p>{group.feature.desc}</p><strong>OPEN →</strong></Link></div><div className="drop-links">{group.links.map((item) => <Link key={item.href + item.name} href={item.href}><span><b>{item.name}</b><small>{item.desc}</small></span><i>→</i></Link>)}</div></div>
         </details>)}
-        <Link href="/roof-advisor">Roof Advisor</Link>
+        <Link className="ai-nav-link" href="/roof-advisor"><i/>AI Advisor</Link>
       </nav>
       <Link className="nav-cta" href="/start">START PROJECT <span>→</span></Link>
     </header>
     {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/services#inspection"><span>FREE INSPECTION</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
+    <CowboyCopilot path={path}/>
   </>;
 }
 
