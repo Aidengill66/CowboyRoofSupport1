@@ -33,6 +33,7 @@ const groups = [
     links: [
       { name: 'Our quality', href: '/quality', desc: 'How every job is protected and checked.' },
       { name: 'Large-scale services', href: '/services#commercial', desc: 'Commercial, complex, arena, and high-rise capability.' },
+      { name: 'Trust, legal & tax readiness', href: '/legal', desc: 'Customer terms, claims boundaries, consent, tax facts, and operating controls.' },
       { name: 'Family companies', href: '/family', desc: 'Airoze, pressure washing, and the wider network.' },
       { name: 'Service area', href: '/services#inspection', desc: 'North Atlanta homes and larger regional projects.' },
     ],
@@ -71,6 +72,6 @@ export function SiteFooter() {
     <div><Link className="brand inverse" href="/"><BrandMark/><span>COWBOY<small>ROOF SUPPORT</small></span></Link><p>Home-first roofing with the capability to go far beyond it. Built for North Atlanta.</p></div>
     <div><small>START</small><Link href="/start">Start a project</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link><Link href="/services#inspection">Free inspection</Link></div>
     <div><small>EXPLORE</small><Link href="/services">Services</Link><Link href="/quality">Quality & Protection</Link><Link href="/guides">Guides</Link><Link href="/marketplace">Marketplace</Link></div>
-    <div><small>NETWORK</small><Link href="/rewards">Rewards</Link><Link href="/family">Family companies</Link><a href="https://airoze.com" target="_blank" rel="noreferrer">Airoze ↗</a></div>
-  </div><div className="footer-base"><span>© 2026 COWBOY ROOF SUPPORT</span><span>ROOFED RIGHT. COWBOY BUILT.</span></div></footer>;
+    <div><small>TRUST + NETWORK</small><Link href="/legal">Legal & tax readiness</Link><Link href="/legal#privacy">Privacy</Link><Link href="/legal#accessibility">Accessibility</Link><Link href="/rewards">Rewards</Link><Link href="/family">Family companies</Link><a href="https://airoze.com" target="_blank" rel="noreferrer">Airoze ↗</a></div>
+  </div><div className="footer-base"><span>© 2026 COWBOY ROOF SUPPORT</span><span><Link href="/legal#customer-terms">TERMS</Link> · <Link href="/legal#privacy">PRIVACY</Link> · ROOFED RIGHT. COWBOY BUILT.</span></div></footer>;
 }
