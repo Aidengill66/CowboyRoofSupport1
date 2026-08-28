@@ -1,0 +1,801 @@
+.repair-command {
+  padding: 110px 0;
+  background:
+    radial-gradient(circle at 85% 13%, #29492f 0, transparent 31%),
+    linear-gradient(135deg, #080d09, #101812 58%, #080b09);
+  color: #eef3ef;
+  position: relative;
+  overflow: hidden;
+}
+
+.repair-command::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#76b90008 1px, transparent 1px), linear-gradient(90deg, #76b90008 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, #000, transparent 78%);
+}
+
+.repair-command-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.repair-command-head {
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: end;
+  gap: 80px;
+}
+
+.repair-command-head h2 {
+  margin: 0;
+  font: 500 clamp(54px, 6vw, 82px)/.87 Georgia, serif;
+  letter-spacing: -.055em;
+}
+
+.repair-command-head > p {
+  margin: 0;
+  color: #97a39a;
+  font: 13px/1.7 Georgia, serif;
+}
+
+.repair-progress {
+  position: relative;
+  min-height: 72px;
+  padding: 0 22px;
+  border: 1px solid #344138;
+  border-bottom: 0;
+  background: #0b110dd9;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.repair-progress > i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #27312a;
+}
+
+.repair-progress > i > b {
+  display: block;
+  height: 100%;
+  background: var(--signal);
+  box-shadow: 0 0 14px #76b90088;
+  transition: width .25s ease;
+}
+
+.repair-progress > button {
+  border: 0;
+  border-right: 1px solid #2c3730;
+  padding: 0 19px;
+  background: transparent;
+  color: #657068;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.repair-progress > button:last-child {
+  border-right: 0;
+}
+
+.repair-progress button small {
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.repair-progress button span {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.repair-progress button.active,
+.repair-progress button.complete {
+  color: #fff;
+}
+
+.repair-progress button.active small,
+.repair-progress button.complete small {
+  color: var(--signal-soft);
+}
+
+.repair-workbench {
+  min-height: 760px;
+  border: 1px solid #344138;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  background: #e9ede8;
+  color: #0a0e0b;
+  box-shadow: 15px 15px 0 #050705;
+}
+
+.repair-controls {
+  min-width: 0;
+  padding: 34px;
+}
+
+.repair-step-panel {
+  min-height: 690px;
+  display: flex;
+  flex-direction: column;
+  animation: repair-panel-in .2s ease-out both;
+}
+
+.repair-step-title {
+  margin-bottom: 29px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 13px;
+}
+
+.repair-step-title > span {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #aeb7af;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #568719;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.repair-step-title small,
+.repair-field > span,
+.repair-safety legend,
+.repair-spread legend {
+  color: #5a675d;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.repair-step-title h3 {
+  margin: 5px 0 0;
+  font: 34px/.95 Georgia, serif;
+  letter-spacing: -.035em;
+}
+
+.repair-issue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #bdc5bd;
+  border-left: 1px solid #bdc5bd;
+}
+
+.repair-issue-grid > button {
+  min-height: 100px;
+  border: 0;
+  border-right: 1px solid #bdc5bd;
+  border-bottom: 1px solid #bdc5bd;
+  padding: 16px;
+  background: #f6f8f4;
+  color: #111713;
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.repair-issue-grid > button:last-child {
+  grid-column: 1 / 3;
+}
+
+.repair-issue-grid > button > i {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #7e8980;
+  border-radius: 50%;
+}
+
+.repair-issue-grid > button > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.repair-issue-grid > button b {
+  font-size: 9px;
+}
+
+.repair-issue-grid > button small {
+  color: #6f786f;
+  font: 9px/1.35 Georgia, serif;
+}
+
+.repair-issue-grid > button em {
+  color: #79827b;
+  font-size: 5px;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.repair-issue-grid > button:hover,
+.repair-issue-grid > button:focus-visible,
+.repair-issue-grid > button.selected {
+  position: relative;
+  z-index: 1;
+  background: #e7f0dc;
+  box-shadow: inset 3px 0 var(--signal);
+  outline: 0;
+}
+
+.repair-issue-grid > button.selected > i {
+  border-color: #4d7f13;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px #76b9001b;
+}
+
+.repair-issue-grid > button.selected em {
+  color: #4b7a14;
+}
+
+.repair-safety,
+.repair-spread {
+  margin: 25px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.repair-safety legend,
+.repair-spread legend {
+  margin-bottom: 12px;
+}
+
+.repair-safety > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.repair-safety button {
+  min-height: 54px;
+  border: 1px solid #c2c9c2;
+  padding: 9px 10px;
+  background: #f8faf7;
+  color: #2a302c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  font-size: 6px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+}
+
+.repair-safety button span {
+  color: #738078;
+}
+
+.repair-safety button.selected {
+  border-color: #b78138;
+  background: #fff4df;
+  color: #5d3512;
+}
+
+.repair-safety button:first-child.selected {
+  border-color: #719c43;
+  background: #eef7e7;
+  color: #345411;
+}
+
+.repair-panel-nav {
+  min-height: 72px;
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid #c3cac3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.repair-panel-nav > span {
+  color: #687168;
+  font: 9px Georgia, serif;
+}
+
+.repair-panel-nav > button,
+.repair-brief-actions a,
+.repair-brief-actions button {
+  min-height: 48px;
+  padding: 0 17px;
+  border: 0;
+  background: #101611;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.repair-panel-nav > button b {
+  color: var(--signal-soft);
+}
+
+.repair-panel-nav > button.back {
+  margin-right: auto;
+  padding-inline: 0;
+  background: transparent;
+  color: #3e4841;
+}
+
+.repair-field {
+  margin-bottom: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.repair-field select {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #bfc7bf;
+  border-radius: 0;
+  padding: 0 16px;
+  background: #f8faf7;
+  color: #111713;
+  font: 14px Georgia, serif;
+  outline: 0;
+}
+
+.repair-field select:focus {
+  border-color: #568818;
+  box-shadow: 0 0 0 3px #76b9001b;
+}
+
+.repair-field > small {
+  color: #7d867e;
+  font: 8px Georgia, serif;
+}
+
+.repair-spread > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.repair-spread button {
+  min-height: 58px;
+  border: 1px solid #bdc5bd;
+  background: #f8faf7;
+  color: #343c36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 7px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.repair-spread button i {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #7d887f;
+  border-radius: 50%;
+}
+
+.repair-spread button.selected {
+  border-color: #568818;
+  background: #e8f1dd;
+}
+
+.repair-spread button.selected i {
+  border-color: var(--signal);
+  background: var(--signal);
+}
+
+.repair-readout {
+  min-width: 0;
+  padding: 27px;
+  background:
+    linear-gradient(#76b90008 1px, transparent 1px),
+    linear-gradient(90deg, #76b90008 1px, transparent 1px),
+    #0b110d;
+  background-size: 25px 25px;
+  color: #eef4ef;
+  display: flex;
+  flex-direction: column;
+}
+
+.repair-readout.danger {
+  background:
+    linear-gradient(#df8b240b 1px, transparent 1px),
+    linear-gradient(90deg, #df8b240b 1px, transparent 1px),
+    #161008;
+  background-size: 25px 25px;
+  box-shadow: inset 4px 0 #d68a29;
+}
+
+.repair-readout-top {
+  min-height: 40px;
+  border-bottom: 1px solid #2c382f;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  color: #6f7b71;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.repair-readout-top span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.repair-readout-top i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px #76b90020;
+}
+
+.repair-readout-top b {
+  color: var(--signal-soft);
+  font-size: 5px;
+}
+
+.danger .repair-readout-top b,
+.danger .repair-readout-top i {
+  color: #ffc067;
+  background: #df8b24;
+}
+
+.repair-readout > section {
+  padding: 31px 0 28px;
+  border-bottom: 1px solid #2d3830;
+}
+
+.repair-readout > section small,
+.repair-decision small,
+.repair-focus > small,
+.repair-brief-grid small,
+.repair-arrival > small {
+  color: #738077;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.repair-readout > section h3 {
+  margin: 12px 0;
+  color: #fff;
+  font: 34px/.91 Georgia, serif;
+  letter-spacing: -.035em;
+}
+
+.repair-readout > section p,
+.repair-decision p,
+.repair-focus p {
+  margin: 0;
+  color: #97a39a;
+  font: 10px/1.6 Georgia, serif;
+}
+
+.repair-decision {
+  border-bottom: 1px solid #2d3830;
+}
+
+.repair-decision > span {
+  padding: 21px 0;
+  display: block;
+}
+
+.repair-decision > span + span {
+  padding-top: 0;
+}
+
+.repair-decision b,
+.repair-focus b {
+  display: block;
+  margin: 8px 0;
+  color: #eef3ef;
+  font-size: 8px;
+  letter-spacing: .06em;
+}
+
+.repair-decision > span:last-child b {
+  margin-bottom: 0;
+  color: var(--signal-soft);
+}
+
+.repair-focus {
+  padding: 22px 0;
+}
+
+.repair-readout-actions {
+  margin-top: auto;
+  display: grid;
+  gap: 7px;
+}
+
+.repair-readout-actions a,
+.repair-readout-actions button {
+  min-height: 49px;
+  border: 1px solid #3b473e;
+  padding: 0 14px;
+  background: transparent;
+  color: #eef4ef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.repair-readout-actions a {
+  border-color: var(--signal);
+  background: var(--signal);
+  color: #071006;
+}
+
+.danger .repair-readout-actions a {
+  border-color: #df8b24;
+  background: #df8b24;
+}
+
+.repair-readout-actions a span {
+  font-size: 13px;
+}
+
+.repair-disclaimer {
+  margin: 14px 0 0;
+  color: #5f6a61;
+  font: 7px/1.45 Georgia, serif;
+}
+
+.repair-ready-panel {
+  min-height: 690px;
+}
+
+.repair-brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #bec6be;
+  border-left: 1px solid #bec6be;
+}
+
+.repair-brief-grid > span {
+  min-height: 91px;
+  padding: 16px;
+  border-right: 1px solid #bec6be;
+  border-bottom: 1px solid #bec6be;
+  background: #f7f9f6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.repair-brief-grid b {
+  font: 13px/1.25 Georgia, serif;
+}
+
+.repair-arrival {
+  margin-top: 24px;
+}
+
+.repair-arrival ol {
+  margin: 11px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.repair-arrival li {
+  min-height: 65px;
+  padding: 11px;
+  border: 1px solid #c2c9c2;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.repair-arrival li b {
+  color: #5a8b1e;
+  font-size: 6px;
+}
+
+.repair-arrival li span {
+  color: #586159;
+  font: 9px/1.4 Georgia, serif;
+}
+
+.repair-brief-actions {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.repair-brief-actions a {
+  background: var(--signal);
+  color: #071006;
+}
+
+.repair-brief-actions button {
+  border: 1px solid #aeb7af;
+  background: transparent;
+  color: #253028;
+}
+
+.repair-edit {
+  align-self: start;
+  margin-top: auto;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #6e776f;
+  background: transparent;
+  color: #515b53;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  cursor: pointer;
+}
+
+@keyframes repair-panel-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1080px) {
+  .repair-command-head {
+    grid-template-columns: 1fr 340px;
+    gap: 50px;
+  }
+
+  .repair-workbench {
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+
+  .repair-controls {
+    padding: 27px;
+  }
+
+  .repair-safety > div {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .repair-command-head {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .repair-command-head > p {
+    max-width: 620px;
+  }
+
+  .repair-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .repair-readout {
+    min-height: 580px;
+  }
+
+  .repair-step-panel,
+  .repair-ready-panel {
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 600px) {
+  .repair-command {
+    padding: 75px 0;
+  }
+
+  .repair-command-head {
+    margin-bottom: 32px;
+  }
+
+  .repair-command-head h2 {
+    font-size: 52px;
+  }
+
+  .repair-progress {
+    min-height: 61px;
+    padding: 0;
+  }
+
+  .repair-progress > button {
+    padding: 0 10px;
+    justify-content: center;
+  }
+
+  .repair-progress button span {
+    font-size: 5px;
+  }
+
+  .repair-controls {
+    padding: 21px 16px;
+  }
+
+  .repair-step-panel,
+  .repair-ready-panel {
+    min-height: 700px;
+  }
+
+  .repair-step-title h3 {
+    font-size: 29px;
+  }
+
+  .repair-issue-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .repair-issue-grid > button,
+  .repair-issue-grid > button:last-child {
+    grid-column: auto;
+  }
+
+  .repair-issue-grid > button em {
+    display: none;
+  }
+
+  .repair-safety > div,
+  .repair-spread > div,
+  .repair-brief-grid,
+  .repair-arrival ol,
+  .repair-brief-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .repair-panel-nav > span {
+    display: none;
+  }
+
+  .repair-panel-nav > button:not(.back) {
+    margin-left: auto;
+  }
+
+  .repair-readout {
+    min-height: 620px;
+    padding: 23px 19px;
+  }
+
+  .repair-readout > section h3 {
+    font-size: 31px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .repair-step-panel {
+    animation: none;
+  }
+
+  .repair-progress > i > b {
+    transition: none;
+  }
+}
