@@ -1,0 +1,5 @@
+import Link from 'next/link';
+
+export function PolicyPage({ eyebrow, title, intro, sections }: { eyebrow: string; title: string; intro: string; sections: [string, string][] }) {
+  return <main className="policy-page"><section className="policy-hero"><div className="shell"><p className="eyebrow light">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></div></section><section className="policy-files shell"><aside><small>POLICY CABINET</small><Link href="/terms">CUSTOMER TERMS</Link><Link href="/privacy">PRIVACY</Link><Link href="/accessibility">ACCESSIBILITY</Link><Link href="/legal">FULL LEGAL CENTER</Link></aside><div>{sections.map(([heading, copy], index) => <article key={heading}><small>0{index + 1}</small><h2>{heading}</h2><p>{copy}</p></article>)}</div></section><section className="policy-contact"><p>Prototype policy pages must be reviewed for the final legal entity, services, jurisdictions, vendors, payment flow, and launch date before public use.</p><a href="mailto:hello@cowboyroofsupport.com">CONTACT THE TEAM →</a></section></main>;
+}
