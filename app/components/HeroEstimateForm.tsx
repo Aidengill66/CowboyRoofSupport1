@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useEffect, useState } from 'react';
+import { attributionLabel, captureLeadAttribution, type LeadAttribution } from './LeadSourceCapture';
 
 type Estimate = {
   name: string;
@@ -20,7 +21,9 @@ export function HeroEstimateForm() {
   const [preview, setPreview] = useState('');
   const [complete, setComplete] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [attribution, setAttribution] = useState<LeadAttribution | null>(null);
 
+  useEffect(() => { setAttribution(captureLeadAttribution()); }, []);
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   const update = (key: keyof Estimate, value: string) => {
@@ -37,7 +40,9 @@ export function HeroEstimateForm() {
     `Roof / pitch: ${form.roof || 'Not sure'}`,
     `Property: ${form.address}`,
     `Photo selected: ${photo ? `${photo.name} (attach manually)` : 'No'}`,
-  ].join('\n');
+    `Lead source: ${attributionLabel(attribution) || 'Direct / not provided'}`,
+    attribution?.campaign ? `Campaign: ${attribution.campaign}` : '',
+  ].filter(Boolean).join('\n');
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,6 +80,7 @@ export function HeroEstimateForm() {
     <form id="hero-estimate" className="hero-estimate-panel" onSubmit={submit} noValidate>
       <header><span>FREE INSPECTION REQUEST</span><i>CREW ROUTER · READY</i></header>
       <div className="estimate-intro"><small>60-SECOND START</small><h2>Show us the roof.</h2><p>We will turn the basics into one crew-ready request.</p></div>
+      {attributionLabel(attribution) && <div className="referral-receipt"><span>REFERRED HERE BY</span><b>{attributionLabel(attribution)}</b><i>✓ SOURCE SAVED</i></div>}
       <div className="estimate-grid">
         <label>NAME<input value={form.name} onChange={(e) => update('name', e.target.value)} autoComplete="name" placeholder="First and last" aria-invalid={!!errors.name}/>{errors.name && <em>{errors.name}</em>}</label>
         <label>PHONE<input value={form.phone} onChange={(e) => update('phone', e.target.value)} type="tel" autoComplete="tel" placeholder="(470) 000-0000" aria-invalid={!!errors.phone}/>{errors.phone && <em>{errors.phone}</em>}</label>

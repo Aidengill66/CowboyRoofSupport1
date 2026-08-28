@@ -1,0 +1,14 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { HeroEstimateForm } from '../components/HeroEstimateForm';
+
+export const metadata: Metadata = {
+  title: 'North Atlanta Neighbor Roof Check',
+  description: 'A friendly, no-pressure roof inspection starting point for North Atlanta homeowners referred by family, friends, and neighbors.',
+  openGraph: { title: 'A friendly North Atlanta roof check', description: 'Leaks, storm concerns, aging shingles, or just not sure? Start with a free, no-pressure inspection request.', images: ['/cowboy-crew-v1.png'] },
+  twitter: { card: 'summary_large_image', title: 'A friendly North Atlanta roof check', description: 'One simple path from roof concern to a crew-ready inspection request.', images: ['/cowboy-crew-v1.png'] },
+};
+
+export default function NeighborsPage() {
+  return <main className="neighbors-page"><section className="neighbor-hero"><div className="neighbor-story"><p className="eyebrow light">SHARED BY A NORTH ATLANTA NEIGHBOR</p><h1>Worried about<br/>your roof?</h1><p>Tell our family team what you noticed. We will help sort a leak, storm concern, aging roof, or “I am not sure” into one useful next step.</p><div className="neighbor-proof"><span><b>FREE</b>INSPECTION REQUEST</span><span><b>LOCAL</b>NORTH ATLANTA</span><span><b>HUMAN</b>FOLLOW-UP</span></div><img src="/cowboy-crew-v1.png" alt="Friendly Cowboy Roof Support crew speaking with a homeowner"/></div><HeroEstimateForm /></section><section className="neighbor-concerns shell"><header><p className="eyebrow">START WITH WHAT YOU SEE</p><h2>No roofing vocabulary required.</h2></header><div>{[['LEAK OR CEILING STAIN','Water can travel. Document where and when it appears, then let the inspection trace the likely path.','/roof-repair'],['WIND, HAIL, OR DEBRIS','Stay off a wet or damaged roof. Ground-level and interior photos can help start the condition record.','/storm-damage'],['OLD OR WORN SHINGLES','Age alone does not decide repair versus replacement. Field condition, details, and repairability do.','/roof-replacement'],['I AM JUST NOT SURE','That is enough information to begin. Choose “Not sure — advise me” in the request.','/roof-advisor']].map(([title,copy,href],index) => <Link href={href} key={title}><small>0{index + 1}</small><h3>{title}</h3><p>{copy}</p><b>UNDERSTAND THIS →</b></Link>)}</div></section><section className="neighbor-promise"><div className="shell"><div><p className="eyebrow light">THE STRAIGHT-SHOOTING PROMISE</p><h2>Helpful first.<br/>Sales pressure never.</h2></div><div>{['A request is not a contract or confirmed appointment.','No one should climb onto a wet, steep, or damaged roof.','We document roof conditions; insurers decide policy coverage.','Final scope and pricing follow field verification.'].map((item,index) => <span key={item}><b>0{index + 1}</b>{item}</span>)}</div></div></section></main>;
+}

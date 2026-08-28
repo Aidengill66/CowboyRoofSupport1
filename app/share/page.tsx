@@ -1,0 +1,9 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ReferralStudio } from '../components/ReferralStudio';
+
+export const metadata: Metadata = { title: 'Family Share Desk', description: 'One-tap organic Facebook sharing and referral tools for Cowboy Roof Support.' };
+
+export default function SharePage() {
+  return <main className="share-page"><section className="share-hero"><div className="shell"><div><p className="eyebrow light">THE FAMILY SHARE DESK</p><h1>Turn one good post<br/>into a clean trail.</h1></div><p>Your mom already has the trust. This desk makes the handoff easy: one link, useful wording, a focused homeowner page, and a source label that stays with the inspection brief.</p></div></section><section className="share-workbench shell"><header><p className="eyebrow">NO AD SPEND REQUIRED</p><h2>Post. Help. Track.</h2><p>Use the same link every time. The site remembers that the homeowner came from the family Facebook trail and includes it when they prepare their request.</p></header><ReferralStudio /></section><section className="share-rules"><div className="shell">{[['01','BE PERSONAL','A real introduction from someone neighbors know will outperform generic sales copy.'],['02','BE USEFUL','Lead with the roof problem, safety, and a clear next step—not pressure.'],['03','BE CONSISTENT','Reuse the trackable link so every response follows the same path.'],['04','FOLLOW UP FAST','A warm lead cools quickly. Call or email as soon as the prepared request arrives.']].map(([n,title,copy]) => <article key={n}><small>{n}</small><h3>{title}</h3><p>{copy}</p></article>)}</div></section><section className="share-next"><div><p className="eyebrow light">SEE WHAT CUSTOMERS SEE</p><h2>Walk the neighbor trail.</h2></div><Link href="/neighbors?ref=family-facebook&utm_source=facebook&utm_medium=organic_social&utm_campaign=north_atlanta_roof_check">OPEN THE FACEBOOK LANDING PAGE →</Link></section></main>;
+}

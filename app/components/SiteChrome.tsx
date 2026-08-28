@@ -38,6 +38,8 @@ const groups = [
     feature: { name: 'Meet the Cowboy standard', href: '/quality', desc: 'Nice people, serious roofs, no roofing riddles.' },
     links: [
       { name: 'Our quality', href: '/quality', desc: 'How every job is protected and checked.' },
+      { name: 'Family Share Desk', href: '/share', desc: 'One-tap Facebook posts, a trackable link, and a clean referral trail.' },
+      { name: 'Neighbor roof check', href: '/neighbors', desc: 'The focused landing page for family and neighborhood referrals.' },
       { name: 'Large-scale services', href: '/services#commercial', desc: 'Commercial, complex, arena, and high-rise capability.' },
       { name: 'Trust, legal & tax readiness', href: '/legal', desc: 'Customer terms, claims boundaries, consent, tax facts, and operating controls.' },
       { name: 'Family companies', href: '/family', desc: 'Airoze, pressure washing, and the wider network.' },
@@ -90,7 +92,7 @@ export function SiteHeader() {
       </nav>
       <Link className="nav-cta" href="/free-inspection">FREE INSPECTION <span>→</span></Link>
     </header>
-    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/project-center"><span>COMMAND CENTER</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
+    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/project-center"><span>COMMAND CENTER</span></Link><Link href="/share"><span>SHARE</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
     <div className="mobile-contact-bar" aria-label="Mobile contact actions"><a href="tel:+14708342519"><small>LEAK OR STORM?</small><b>CALL NOW</b></a><Link href="/free-inspection"><small>60-SECOND START</small><b>FREE QUOTE</b></Link></div>
     <CowboyCopilot path={path}/>
   </>;
@@ -99,7 +101,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return <footer className="footer"><div className="footer-main">
     <div><Link className="brand inverse" href="/"><BrandMark/><span>COWBOY<small>ROOF SUPPORT</small></span></Link><p>Home-first roofing with the capability to go far beyond it. Built for North Atlanta.</p></div>
-    <div><small>START</small><Link href="/free-inspection">Free inspection</Link><a href="tel:+14708342519">Call (470) 834-2519</a><Link href="/project-center">Roof Command Center</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link></div>
+    <div><small>START</small><Link href="/free-inspection">Free inspection</Link><a href="tel:+14708342519">Call (470) 834-2519</a><Link href="/neighbors">Neighbor roof check</Link><Link href="/share">Family Share Desk</Link><Link href="/project-center">Roof Command Center</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link></div>
     <div><small>SERVICES</small><Link href="/roof-replacement">Roof replacement</Link><Link href="/roof-repair">Roof repair</Link><Link href="/storm-damage">Storm damage</Link><Link href="/commercial-roofing">Commercial roofing</Link><Link href="/transformations">Transformations</Link><Link href="/service-areas">Service areas</Link></div>
     <div><small>LIBRARY + TRUST</small><Link href="/library">Roofing Library</Link><Link href="/quality">Quality & Protection</Link><Link href="/legal">Legal & tax readiness</Link><Link href="/privacy">Privacy</Link><Link href="/accessibility">Accessibility</Link><Link href="/terms">Terms</Link><Link href="/family">Family companies</Link></div>
   </div><div className="footer-base"><span>© 2026 COWBOY ROOF SUPPORT</span><span><Link href="/terms">TERMS</Link> · <Link href="/privacy">PRIVACY</Link> · ROOFED RIGHT. COWBOY BUILT.</span></div></footer>;
