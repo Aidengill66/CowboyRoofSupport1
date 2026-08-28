@@ -5,9 +5,9 @@ import { SiteFooter, SiteHeader } from './components/SiteChrome';
 export const metadata: Metadata = {
   metadataBase: new URL('https://cowboyroofsupport.com'),
   title: { default: 'Cowboy Roof Support | North Atlanta Roofing', template: '%s | Cowboy Roof Support' },
-  description: 'Modern residential and large-scale roofing for North Atlanta. Customize a roof, compare systems, explore blueprints, and plan your project.',
-  openGraph: { title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-architectural.png'] },
-  twitter: { card: 'summary_large_image', title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-architectural.png'] },
+  description: 'Friendly, expert North Atlanta roofers with smart planning tools, premium material systems, documented quality checks, and straight-shooting service.',
+  openGraph: { title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-quality.png'] },
+  twitter: { card: 'summary_large_image', title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-quality.png'] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
