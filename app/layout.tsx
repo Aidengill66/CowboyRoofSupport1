@@ -1,31 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { SiteFooter, SiteHeader } from './components/SiteChrome';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cowboyroofsupport.com'),
-  title: 'Cowboy Roof Support | Roofed Right. Cowboy Built.',
-  description: 'Premium North Atlanta roofing backed by family-built ventures in commercial property care, artificial intelligence, and aerospace.',
-  openGraph: {
-    title: 'Cowboy Roof Support',
-    description: 'Roofed right. Cowboy built.',
-    images: ['/og.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Cowboy Roof Support',
-    description: 'Roofed right. Cowboy built.',
-    images: ['/og.png'],
-  },
+  title: { default: 'Cowboy Roof Support | North Atlanta Roofing', template: '%s | Cowboy Roof Support' },
+  description: 'Modern residential and large-scale roofing for North Atlanta. Customize a roof, compare systems, explore blueprints, and plan your project.',
+  openGraph: { title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-architectural.png'] },
+  twitter: { card: 'summary_large_image', title: 'Cowboy Roof Support', description: 'Roofed right. Cowboy built.', images: ['/og-architectural.png'] },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body><SiteHeader />{children}<SiteFooter /></body></html>;
 }
