@@ -11,6 +11,7 @@ const groups = [
     feature: { name: 'Start my project', href: '/start', desc: 'One simple path from problem to project request.' },
     links: [
       { name: 'Smart Roof Advisor', href: '/roof-advisor', desc: 'Get a system recommendation from six roof facts.' },
+      { name: 'Roof Command Center', href: '/project-center', desc: 'Route the job, plan an inspection, prepare the property, and follow the project path.' },
       { name: 'Customize your roof', href: '/customize', desc: 'Compare materials, colors, upgrades, and price ranges.' },
       { name: 'Services', href: '/services', desc: 'Repairs, replacement, storms, commercial, and property care.' },
       { name: 'Quality & Protection', href: '/quality', desc: 'See checkpoints, cleanup, documentation, and crew care.' },
@@ -62,7 +63,7 @@ export function SiteHeader() {
       </nav>
       <Link className="nav-cta" href="/start">START PROJECT <span>→</span></Link>
     </header>
-    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/services#inspection"><span>FREE INSPECTION</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
+    {path !== '/start' && <div className="quick-dock" aria-label="Quick actions"><Link href="/start"><small>READY TO MOVE?</small><b>START PROJECT</b></Link><Link href="/project-center"><span>COMMAND CENTER</span></Link><Link href="/marketplace"><span>SHOP</span></Link></div>}
     <CowboyCopilot path={path}/>
   </>;
 }
@@ -70,7 +71,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return <footer className="footer"><div className="footer-main">
     <div><Link className="brand inverse" href="/"><BrandMark/><span>COWBOY<small>ROOF SUPPORT</small></span></Link><p>Home-first roofing with the capability to go far beyond it. Built for North Atlanta.</p></div>
-    <div><small>START</small><Link href="/start">Start a project</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link><Link href="/services#inspection">Free inspection</Link></div>
+    <div><small>START</small><Link href="/start">Start a project</Link><Link href="/project-center">Roof Command Center</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link><Link href="/services#inspection">Free inspection</Link></div>
     <div><small>EXPLORE</small><Link href="/services">Services</Link><Link href="/quality">Quality & Protection</Link><Link href="/guides">Guides</Link><Link href="/marketplace">Marketplace</Link></div>
     <div><small>TRUST + NETWORK</small><Link href="/legal">Legal & tax readiness</Link><Link href="/legal#privacy">Privacy</Link><Link href="/legal#accessibility">Accessibility</Link><Link href="/rewards">Rewards</Link><Link href="/family">Family companies</Link><a href="https://airoze.com" target="_blank" rel="noreferrer">Airoze ↗</a></div>
   </div><div className="footer-base"><span>© 2026 COWBOY ROOF SUPPORT</span><span><Link href="/legal#customer-terms">TERMS</Link> · <Link href="/legal#privacy">PRIVACY</Link> · ROOFED RIGHT. COWBOY BUILT.</span></div></footer>;
