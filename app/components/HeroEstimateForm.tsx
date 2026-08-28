@@ -14,7 +14,9 @@ type Estimate = {
 
 const emptyEstimate: Estimate = { name: '', phone: '', email: '', service: '', roof: '', address: '' };
 
-export function HeroEstimateForm() {
+const serviceFromParam: Record<string, string> = { general: 'Not sure — advise me', repair: 'Leak / roof repair', storm: 'Storm damage inspection', replacement: 'Roof replacement', inspection: 'Free roof inspection', commercial: 'Commercial roofing' };
+
+export function HeroEstimateForm({ defaultCity = '' }: { defaultCity?: string }) {
   const [form, setForm] = useState<Estimate>(emptyEstimate);
   const [errors, setErrors] = useState<Partial<Record<keyof Estimate | 'photo', string>>>({});
   const [photo, setPhoto] = useState<File | null>(null);
@@ -23,7 +25,11 @@ export function HeroEstimateForm() {
   const [copied, setCopied] = useState(false);
   const [attribution, setAttribution] = useState<LeadAttribution | null>(null);
 
-  useEffect(() => { setAttribution(captureLeadAttribution()); }, []);
+  useEffect(() => {
+    setAttribution(captureLeadAttribution());
+    const service = serviceFromParam[new URLSearchParams(window.location.search).get('service') || ''];
+    if (service) setForm((current) => ({ ...current, service }));
+  }, []);
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   const update = (key: keyof Estimate, value: string) => {
@@ -42,6 +48,7 @@ export function HeroEstimateForm() {
     `Photo selected: ${photo ? `${photo.name} (attach manually)` : 'No'}`,
     `Lead source: ${attributionLabel(attribution) || 'Direct / not provided'}`,
     attribution?.campaign ? `Campaign: ${attribution.campaign}` : '',
+    attribution?.landingPath ? `Landing page: ${attribution.landingPath}` : '',
   ].filter(Boolean).join('\n');
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -87,7 +94,7 @@ export function HeroEstimateForm() {
         <label>EMAIL<input value={form.email} onChange={(e) => update('email', e.target.value)} type="email" autoComplete="email" placeholder="you@example.com" aria-invalid={!!errors.email}/>{errors.email && <em>{errors.email}</em>}</label>
         <label>SERVICE<select value={form.service} onChange={(e) => update('service', e.target.value)} aria-invalid={!!errors.service}><option value="">Choose one</option><option>Free roof inspection</option><option>Leak / roof repair</option><option>Storm damage inspection</option><option>Roof replacement</option><option>Commercial roofing</option><option>Not sure — advise me</option></select>{errors.service && <em>{errors.service}</em>}</label>
         <label className="wide">ROOF / PITCH<select value={form.roof} onChange={(e) => update('roof', e.target.value)}><option value="">Not sure — inspect it</option><option>Asphalt shingles · walkable</option><option>Asphalt shingles · steep</option><option>Metal roof</option><option>Flat / low-slope</option><option>Tile, slate, or specialty</option></select></label>
-        <label className="wide">PROPERTY ADDRESS<input value={form.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" placeholder="Street address, city, GA" aria-invalid={!!errors.address}/>{errors.address && <em>{errors.address}</em>}</label>
+        <label className="wide">PROPERTY ADDRESS<input value={form.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" placeholder={defaultCity ? `Street address, ${defaultCity}, GA` : 'Street address, city, GA'} aria-invalid={!!errors.address}/>{errors.address && <em>{errors.address}</em>}</label>
         <label className="photo-field wide"><input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => choosePhoto(e.target.files?.[0])}/>{preview ? <img src={preview} alt="Selected roof damage preview"/> : <span><b>+ ADD A ROOF PHOTO</b><small>Optional · JPG, PNG, or WebP · 8 MB max</small></span>}{errors.photo && <em>{errors.photo}</em>}</label>
       </div>
       <button className="estimate-submit" type="submit">PREPARE MY FREE INSPECTION <span>→</span></button>
