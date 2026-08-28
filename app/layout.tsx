@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { InteractionLayer } from './components/InteractionLayer';
+import { BusinessSchema } from './components/BusinessSchema';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cowboyroofsupport.com'),
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><SiteHeader /><InteractionLayer />{children}<SiteFooter /></body></html>;
+  return <html lang="en"><head><BusinessSchema /></head><body><SiteHeader /><InteractionLayer />{children}<SiteFooter /></body></html>;
 }
