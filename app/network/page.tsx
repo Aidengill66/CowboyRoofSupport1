@@ -14,6 +14,6 @@ export default function NetworkPage() {
         <div><p>Give each legitimate supporter or partner a distinct local trail, a clear onboarding message, and a record that stays on the current device.</p><span><i/>NO SPAM · NO INVENTED PARTNERS</span></div>
       </div>
     </section>
-    <section className="internal-workspace shell"><ReferralNetwork /></section>
+    <section id="referral-network" className="internal-workspace shell"><ReferralNetwork /></section>
   </main>;
 }

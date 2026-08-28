@@ -3,7 +3,9 @@ import './globals.css';
 import './systems.css';
 import './directory.css';
 import './intelligence.css';
+import './page-identities.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
+import { PageIdentityLayer } from './components/PageIdentityLayer';
 import { InteractionLayer } from './components/InteractionLayer';
 import { BusinessSchema } from './components/BusinessSchema';
 import { LeadSourceCapture } from './components/LeadSourceCapture';
@@ -18,5 +20,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><head><BusinessSchema /></head><body><LeadSourceCapture /><SiteHeader /><InteractionLayer />{children}<SiteFooter /></body></html>;
+  return <html lang="en"><head><BusinessSchema /></head><body><LeadSourceCapture /><SiteHeader /><InteractionLayer /><PageIdentityLayer>{children}</PageIdentityLayer><SiteFooter /></body></html>;
 }

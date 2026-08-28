@@ -20,7 +20,7 @@ export default function LeadsPage() {
         </div>
       </div>
     </section>
-    <section className="internal-workspace shell">
+    <section id="lead-desk" className="internal-workspace shell">
       <LeadDesk />
     </section>
   </main>;

@@ -25,7 +25,7 @@ export default function GrowthPage() {
         </div>
       </div>
     </section>
-    <section className="growth-workspace shell">
+    <section id="growth-command" className="growth-workspace shell">
       <GrowthCommandCenter />
     </section>
     <section className="growth-system-bridge">

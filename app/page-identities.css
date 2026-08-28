@@ -1,0 +1,401 @@
+/* Route identity system: one brand, one clear mission for every page. */
+.route-canvas {
+  --page-accent: #8fcf35;
+  --page-watermark: "CRS";
+  position: relative;
+  isolation: isolate;
+}
+
+.purpose-rail {
+  position: relative;
+  z-index: 6;
+  overflow: hidden;
+  color: #f4f6f2;
+  background: #080c09;
+  border-top: 4px solid var(--page-accent);
+  border-bottom: 1px solid #303a32;
+}
+
+.purpose-rail::after {
+  content: var(--page-watermark);
+  position: absolute;
+  right: 1.5vw;
+  top: 50%;
+  z-index: -1;
+  color: color-mix(in srgb, var(--page-accent) 8%, transparent);
+  font: 500 clamp(72px, 9vw, 155px)/.7 Georgia, serif;
+  letter-spacing: -.08em;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.purpose-rail-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .56;
+  pointer-events: none;
+}
+
+.motif-blueprint .purpose-rail-pattern {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--page-accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--page-accent) 12%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.motif-cattle-grid .purpose-rail-pattern {
+  background-image:
+    linear-gradient(45deg, transparent 46%, color-mix(in srgb, var(--page-accent) 14%, transparent) 47% 53%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, color-mix(in srgb, var(--page-accent) 9%, transparent) 47% 53%, transparent 54%);
+  background-size: 78px 78px;
+}
+
+.motif-signal .purpose-rail-pattern {
+  background:
+    radial-gradient(circle at 16% 50%, color-mix(in srgb, var(--page-accent) 22%, transparent) 0 2px, transparent 3px),
+    repeating-linear-gradient(90deg, transparent 0 78px, color-mix(in srgb, var(--page-accent) 10%, transparent) 79px 80px);
+  background-size: 32px 32px, auto;
+}
+
+.motif-storm .purpose-rail-pattern {
+  background:
+    radial-gradient(ellipse at 72% 30%, color-mix(in srgb, var(--page-accent) 22%, transparent), transparent 32%),
+    repeating-linear-gradient(118deg, transparent 0 26px, color-mix(in srgb, var(--page-accent) 9%, transparent) 27px 29px);
+}
+
+.motif-ledger .purpose-rail-pattern {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 31px, color-mix(in srgb, var(--page-accent) 9%, transparent) 32px 33px),
+    linear-gradient(90deg, transparent 0 24%, color-mix(in srgb, var(--page-accent) 11%, transparent) 24% 24.2%, transparent 24.2%);
+}
+
+.motif-supply .purpose-rail-pattern {
+  background-image:
+    linear-gradient(90deg, transparent 0 89%, color-mix(in srgb, var(--page-accent) 12%, transparent) 89% 90%, transparent 90%),
+    linear-gradient(0deg, transparent 0 89%, color-mix(in srgb, var(--page-accent) 12%, transparent) 89% 90%, transparent 90%);
+  background-size: 84px 84px;
+  transform: rotate(-3deg) scale(1.08);
+}
+
+.motif-topographic .purpose-rail-pattern {
+  background:
+    repeating-radial-gradient(ellipse at 73% 46%, transparent 0 23px, color-mix(in srgb, var(--page-accent) 12%, transparent) 24px 25px, transparent 26px 48px);
+}
+
+.motif-gallery .purpose-rail-pattern {
+  background:
+    linear-gradient(110deg, transparent 0 18%, color-mix(in srgb, var(--page-accent) 15%, transparent) 18.2% 18.7%, transparent 19% 45%, color-mix(in srgb, var(--page-accent) 9%, transparent) 45.2% 45.7%, transparent 46%),
+    radial-gradient(circle at 82% 30%, color-mix(in srgb, var(--page-accent) 18%, transparent), transparent 28%);
+}
+
+.purpose-rail-inner {
+  width: min(1420px, calc(100% - 48px));
+  min-height: 148px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 135px minmax(310px, 1.3fr) minmax(330px, .9fr) 215px;
+  align-items: stretch;
+}
+
+.purpose-rail-inner > * {
+  min-width: 0;
+  border-right: 1px solid #2b352d;
+}
+
+.purpose-code {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  padding-right: 20px;
+}
+
+.purpose-code span {
+  color: var(--page-accent);
+  font: 500 20px Georgia, serif;
+  letter-spacing: -.03em;
+}
+
+.purpose-code small,
+.purpose-statement small,
+.purpose-outcomes > small,
+.purpose-action small {
+  color: #77847a;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .17em;
+}
+
+.purpose-statement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 19px 34px;
+}
+
+.purpose-statement small {
+  color: var(--page-accent);
+}
+
+.purpose-statement strong {
+  margin-top: 8px;
+  font: 500 clamp(25px, 2.35vw, 38px)/.96 Georgia, serif;
+  letter-spacing: -.04em;
+}
+
+.purpose-statement p {
+  max-width: 640px;
+  margin: 10px 0 0;
+  color: #98a39a;
+  font: 11px/1.55 Georgia, serif;
+}
+
+.purpose-outcomes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px 28px;
+}
+
+.purpose-outcomes ol {
+  margin: 11px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  list-style: none;
+}
+
+.purpose-outcomes li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: center;
+  color: #c6cec7;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.purpose-outcomes li b {
+  color: var(--page-accent);
+  font-size: 6px;
+}
+
+.purpose-action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  padding: 23px 25px;
+  color: #071009;
+  background: var(--page-accent);
+  text-decoration: none;
+  transition: filter .18s ease, transform .18s ease;
+}
+
+.purpose-action small {
+  color: #14201499;
+}
+
+.purpose-action b {
+  max-width: 145px;
+  font-size: 8px;
+  line-height: 1.35;
+  letter-spacing: .1em;
+}
+
+.purpose-action span {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  font-size: 19px;
+  transform: translateY(-50%);
+}
+
+.purpose-action:hover {
+  filter: brightness(1.08);
+  transform: translateX(-3px);
+}
+
+.purpose-path {
+  min-height: 29px;
+  padding: 0 max(24px, calc((100% - 1420px) / 2));
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid #242d26;
+  background: #060906;
+  color: #58645b;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.purpose-path a {
+  color: #7e8a80;
+  text-decoration: none;
+}
+
+.purpose-path a:hover {
+  color: var(--page-accent);
+}
+
+.purpose-path i {
+  color: var(--page-accent);
+  font-style: normal;
+}
+
+.purpose-path span {
+  min-width: 0;
+  overflow: hidden;
+  color: #9da79f;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.route-canvas:not(.route-home) > main > section:first-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--page-accent) 55%, #202a22) !important;
+  box-shadow: inset 0 -5px color-mix(in srgb, var(--page-accent) 9%, transparent);
+}
+
+.route-canvas:not(.route-home) > main > section:first-child .eyebrow {
+  color: var(--page-accent);
+}
+
+.route-canvas:not(.route-home) > main .primary {
+  box-shadow: inset 0 -3px var(--page-accent);
+}
+
+.route-canvas:not(.route-home) > main a:focus-visible,
+.route-canvas:not(.route-home) > main button:focus-visible,
+.purpose-rail a:focus-visible {
+  outline-color: var(--page-accent);
+}
+
+@media (max-width: 1180px) {
+  .purpose-rail-inner {
+    grid-template-columns: 110px minmax(270px, 1.2fr) minmax(280px, .8fr) 175px;
+  }
+
+  .purpose-statement {
+    padding-inline: 24px;
+  }
+
+  .purpose-outcomes {
+    padding-inline: 20px;
+  }
+
+  .purpose-action {
+    padding-inline: 18px;
+  }
+}
+
+@media (max-width: 940px) {
+  .purpose-rail-inner {
+    grid-template-columns: 105px 1fr 185px;
+  }
+
+  .purpose-outcomes {
+    grid-column: 1 / 4;
+    min-height: 60px;
+    padding: 10px 0;
+    border-top: 1px solid #2b352d;
+    border-right: 0;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+  }
+
+  .purpose-outcomes ol {
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .purpose-rail {
+    border-top-width: 3px;
+  }
+
+  .purpose-rail::after {
+    right: -5vw;
+    top: 38%;
+    font-size: 78px;
+  }
+
+  .purpose-rail-inner {
+    width: calc(100% - 30px);
+    grid-template-columns: 78px 1fr;
+  }
+
+  .purpose-code {
+    grid-row: 1;
+    padding: 18px 10px 18px 0;
+  }
+
+  .purpose-code span {
+    font-size: 15px;
+  }
+
+  .purpose-code small {
+    font-size: 4px;
+  }
+
+  .purpose-statement {
+    grid-row: 1;
+    min-height: 146px;
+    padding: 18px 0 18px 18px;
+    border-right: 0;
+  }
+
+  .purpose-statement strong {
+    font-size: 28px;
+  }
+
+  .purpose-statement p {
+    font-size: 10px;
+  }
+
+  .purpose-outcomes {
+    grid-column: 1 / 3;
+    min-height: 0;
+    padding: 14px 0;
+    display: block;
+  }
+
+  .purpose-outcomes ol {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    margin-top: 9px;
+  }
+
+  .purpose-outcomes li {
+    font-size: 6px;
+  }
+
+  .purpose-action {
+    grid-column: 1 / 3;
+    min-height: 61px;
+    padding: 13px 17px;
+    border-right: 0;
+  }
+
+  .purpose-action b {
+    max-width: none;
+  }
+
+  .purpose-path {
+    min-height: 27px;
+    padding-inline: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .purpose-action {
+    transition: none;
+  }
+}

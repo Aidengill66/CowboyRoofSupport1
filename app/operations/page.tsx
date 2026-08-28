@@ -20,7 +20,7 @@ export default function OperationsPage() {
         </div>
       </div>
     </section>
-    <section className="internal-workspace shell">
+    <section id="operations-center" className="internal-workspace shell">
       <RoofOperationsCenter />
     </section>
   </main>;

@@ -63,7 +63,7 @@ export default function ProjectCenterPage() {
   return <main className="command-page">
     <section className="command-intro"><div className="shell"><div><p className="eyebrow light">COWBOY ROOF COMMAND CENTER</p><h1>One place.<br/><em>Every next step.</em></h1><p>Route the job, check the service area, request an inspection window, prepare the property, or understand exactly where a project stands.</p></div><aside><i/><span><small>SYSTEM</small>READY</span><span><small>REGION</small>NORTH ATLANTA</span><span><small>HANDOFFS</small>6 CONTROLLED STAGES</span></aside></div></section>
 
-    <section className="command-app shell">
+    <section id="command-workspace" className="command-app shell">
       <nav aria-label="Project center tools">{[
         ['route','ROUTE MY JOB','Find the right crew and next action'],['schedule','PLAN INSPECTION','Choose a preferred window'],['prepare','PREP PROPERTY','Build a visit-ready checklist'],['status','PROJECT PATH','Understand every stage'],
       ].map((item,index)=><button type="button" key={item[0]} className={mode===item[0]?'active':''} aria-pressed={mode===item[0]} onClick={()=>setMode(item[0] as Mode)}><small>0{index+1}</small><span><b>{item[1]}</b><i>{item[2]}</i></span><strong>→</strong></button>)}</nav>

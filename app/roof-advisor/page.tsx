@@ -64,7 +64,7 @@ export default function RoofAdvisorPage() {
         <article><span>03</span><small>FIELD TRUTH</small><h3>No fake certainty.</h3><p>Diagnosis, price, code, coverage, and final scope remain clearly marked for field or professional verification.</p></article>
       </div>
     </section>
-    <section className="advisor-workbench shell">
+    <section id="advisor-workbench" className="advisor-workbench shell">
       <div className="advisor-controls"><div className="advisor-heading"><span>01</span><div><small>TELL US ABOUT THE ROOF</small><h2>Field questions first.</h2></div></div>
         <label className="advisor-age"><span>APPROXIMATE ROOF AGE <b>{age} YEARS</b></span><input type="range" min="0" max="35" value={age} onChange={(e)=>setAge(Number(e.target.value))}/><i><small>NEW</small><small>PLAN AHEAD</small><small>REPLACEMENT RANGE</small></i></label>
         <label>WHAT ARE YOU SEEING?<select value={issue} onChange={(e)=>setIssue(e.target.value)}>{issues.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}</select></label>

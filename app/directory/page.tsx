@@ -16,6 +16,6 @@ export default function DirectoryPage() {
         <p>One searchable, expandable map for every roofing route, product department, company system, local handoff, and technical file—with Home always one click away.</p>
       </div>
     </section>
-    <section className="directory-workspace shell"><DirectoryExplorer /></section>
+    <section id="directory-explorer" className="directory-workspace shell"><DirectoryExplorer /></section>
   </main>;
 }
