@@ -4,6 +4,7 @@ import './systems.css';
 import './directory.css';
 import './intelligence.css';
 import './page-identities.css';
+import './command-center.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { PageIdentityLayer } from './components/PageIdentityLayer';
 import { InteractionLayer } from './components/InteractionLayer';

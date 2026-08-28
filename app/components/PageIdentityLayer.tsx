@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CSSProperties, ReactNode } from 'react';
 import { resolvePageIdentity } from '../page-identities';
+import { PageNavigator } from './PageNavigator';
+import { SiteCommandCenter } from './SiteCommandCenter';
 
 type IdentityStyle = CSSProperties & {
   '--page-accent': string;
@@ -36,6 +38,8 @@ export function PageIdentityLayer({ children }: { children: ReactNode }) {
       </div>
       <nav className="purpose-path" aria-label="Page location"><Link href="/">HOME</Link><i>/</i><Link href="/directory">ALL FILES</Link><i>/</i><span>{identity.title.toUpperCase()}</span></nav>
     </aside>}
+    <PageNavigator />
     {children}
+    <SiteCommandCenter />
   </div>;
 }

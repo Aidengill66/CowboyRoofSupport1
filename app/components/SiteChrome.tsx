@@ -122,6 +122,7 @@ export function SiteHeader() {
           </div>;
         })}
         <Link className="nav-directory-link" href="/directory"><i/>All files</Link>
+        <button className="site-search-trigger" type="button" onClick={() => window.dispatchEvent(new CustomEvent('crs:open-search'))} aria-label="Search the entire Cowboy Roof Support site"><span>⌕</span>FIND<kbd>⌘K</kbd></button>
         <Link className="ai-nav-link" href="/roof-advisor"><i/>Roof Copilot</Link>
       </nav>
       <Link className="nav-cta" href="/free-inspection">FREE INSPECTION <span>→</span></Link>
