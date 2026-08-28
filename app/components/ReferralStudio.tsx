@@ -65,7 +65,7 @@ export function ReferralStudio() {
       <header><div><small>CAMPAIGN BUILDER · LIVE</small><h2 id="campaign-builder-title">Build the exact trail.</h2></div><span><i/>NO AD PIXEL</span></header>
       <div className="campaign-controls">
         <label>WHO IS SHARING?<input value={referrer} onChange={(event) => setReferrer(event.target.value)} placeholder="family-facebook"/><small>Use a short name, team member, HOA, or partner code.</small></label>
-        <label>NEIGHBORHOOD<select value={city} onChange={(event) => setCity(event.target.value)}>{cities.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><small>The link opens that city's focused page.</small></label>
+        <label>NEIGHBORHOOD<select value={city} onChange={(event) => setCity(event.target.value)}>{cities.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><small>The link opens that city&apos;s focused page.</small></label>
         <label>WHAT IS THE POST ABOUT?<select value={concern} onChange={(event) => setConcern(event.target.value)}>{concerns.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select><small>The inspection form opens with this service selected.</small></label>
       </div>
       <div className="campaign-output"><span><small>REFERRAL CODE</small>{refCode}</span><span><small>MARKET</small>{cityName}</span><span><small>STARTING SERVICE</small>{concernRecord[2]}</span><span><small>CAMPAIGN</small>{city}_{concern}</span></div>

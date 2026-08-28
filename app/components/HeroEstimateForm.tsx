@@ -26,9 +26,12 @@ export function HeroEstimateForm({ defaultCity = '' }: { defaultCity?: string })
   const [attribution, setAttribution] = useState<LeadAttribution | null>(null);
 
   useEffect(() => {
-    setAttribution(captureLeadAttribution());
-    const service = serviceFromParam[new URLSearchParams(window.location.search).get('service') || ''];
-    if (service) setForm((current) => ({ ...current, service }));
+    const timer = window.setTimeout(() => {
+      setAttribution(captureLeadAttribution());
+      const service = serviceFromParam[new URLSearchParams(window.location.search).get('service') || ''];
+      if (service) setForm((current) => ({ ...current, service }));
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 

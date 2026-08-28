@@ -55,7 +55,10 @@ export function CowboyCopilot({ path }: { path: string }) {
   const [messages, setMessages] = useState<ChatMessage[]>([{ from: 'bot', text: context.intro }]);
   const feedRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => setMessages([{ from: 'bot', text: getContext(path).intro }]), [path]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setMessages([{ from: 'bot', text: getContext(path).intro }]), 0);
+    return () => window.clearTimeout(timer);
+  }, [path]);
   useEffect(() => feedRef.current?.scrollTo({ top: feedRef.current.scrollHeight, behavior: 'smooth' }), [messages]);
 
   const ask = (question: string) => {

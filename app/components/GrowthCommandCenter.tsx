@@ -121,14 +121,17 @@ export function GrowthCommandCenter() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem('cowboy_growth_plan');
-      if (saved) setCompleted(JSON.parse(saved) as string[]);
-    } catch {
-      setCompleted([]);
-    } finally {
-      setLoaded(true);
-    }
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = window.localStorage.getItem('cowboy_growth_plan');
+        if (saved) setCompleted(JSON.parse(saved) as string[]);
+      } catch {
+        setCompleted([]);
+      } finally {
+        setLoaded(true);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -418,6 +421,9 @@ export function GrowthCommandCenter() {
       <div>
         <Link href="/share">BUILD A CAMPAIGN</Link>
         <Link href="/neighbors">OPEN CUSTOMER FUNNEL</Link>
+        <Link href="/leads">RUN LEAD DESK</Link>
+        <Link href="/network">BUILD REFERRAL NETWORK</Link>
+        <Link href="/operations">OPEN ROOF OPERATIONS</Link>
       </div>
     </footer>
   </section>;

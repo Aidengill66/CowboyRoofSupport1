@@ -28,6 +28,20 @@ export default function GrowthPage() {
     <section className="growth-workspace shell">
       <GrowthCommandCenter />
     </section>
+    <section className="growth-system-bridge">
+      <div className="shell">
+        <header>
+          <p className="eyebrow">CONNECTED WORKSPACES</p>
+          <h2>Move the signal through the company.</h2>
+          <p>Organic attention becomes a permission-based lead, a real relationship becomes a distinct referral trail, and an approved job moves into a disciplined planning file.</p>
+        </header>
+        <div>
+          <Link href="/leads"><small>01 · ACQUIRE</small><h3>Local Lead Desk</h3><p>Organize inquiries, response status, follow-up dates, planning values, and outcomes on this device.</p><b>OPEN LEAD DESK →</b></Link>
+          <Link href="/network"><small>02 · MULTIPLY TRUST</small><h3>Referral Network</h3><p>Create clean local links and useful onboarding messages for legitimate supporters and partners.</p><b>OPEN NETWORK →</b></Link>
+          <Link href="/operations"><small>03 · DELIVER</small><h3>Roof Operations</h3><p>Build the intake, material allowances, work outline, crew-day checks, and closeout organizer.</p><b>OPEN OPERATIONS →</b></Link>
+        </div>
+      </div>
+    </section>
     <section className="growth-boundary">
       <div className="shell">
         <div>
