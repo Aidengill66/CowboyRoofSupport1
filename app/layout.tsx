@@ -6,6 +6,7 @@ import './intelligence.css';
 import './page-identities.css';
 import './command-center.css';
 import './repair-command.css';
+import './inspection-builder.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { PageIdentityLayer } from './components/PageIdentityLayer';
 import { InteractionLayer } from './components/InteractionLayer';
