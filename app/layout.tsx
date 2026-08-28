@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './systems.css';
+import './directory.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { InteractionLayer } from './components/InteractionLayer';
 import { BusinessSchema } from './components/BusinessSchema';

@@ -4,53 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { CowboyCopilot } from './CowboyCopilot';
-
-const groups = [
-  {
-    label: 'Roofing', kicker: 'PLAN · PROTECT · BUILD',
-    feature: { name: 'Roofing Library', href: '/library', desc: 'The complete cabinet: services, materials, storm files, estate planning, and guides.' },
-    links: [
-      { name: 'Roof replacement', href: '/roof-replacement', desc: 'Scope, system selection, pricing drivers, installation, and closeout.' },
-      { name: 'Roof repair', href: '/roof-repair', desc: 'Diagnose leaks, flashing, wind damage, and repairability.' },
-      { name: 'Storm damage', href: '/storm-damage', desc: 'Priority triage, condition records, and claim-safe guidance.' },
-      { name: 'Commercial roofing', href: '/commercial-roofing', desc: 'Facility-first planning for low-slope and complex properties.' },
-      { name: 'Transformation gallery', href: '/transformations', desc: 'Interactive mansion, estate, and luxury-home roof concepts.' },
-      { name: 'Smart Roof Advisor', href: '/roof-advisor', desc: 'Get a system recommendation from six roof facts.' },
-      { name: 'Roof Command Center', href: '/project-center', desc: 'Route the job, plan an inspection, prepare the property, and follow the project path.' },
-      { name: 'Customize your roof', href: '/customize', desc: 'Compare materials, colors, upgrades, and price ranges.' },
-      { name: 'Services', href: '/services', desc: 'Repairs, replacement, storms, commercial, and property care.' },
-      { name: 'Quality & Protection', href: '/quality', desc: 'See checkpoints, cleanup, documentation, and crew care.' },
-      { name: 'Blueprints & guides', href: '/guides', desc: 'Understand every layer before you buy.' },
-    ],
-  },
-  {
-    label: 'Shop', kicker: 'SYSTEMS · UPGRADES · FIELD GOODS',
-    feature: { name: 'Cowboy Marketplace', href: '/marketplace', desc: 'Build a project list or browse the current gear drop.' },
-    links: [
-      { name: 'Roof systems', href: '/roof-systems', desc: 'Architectural, designer, metal, slate-look, and low-slope systems.' },
-      { name: 'Performance upgrades', href: '/performance-upgrades', desc: 'Water barriers, ventilation, gutters, and storm-readiness files.' },
-      { name: 'Cowboy field goods', href: '/field-goods', desc: 'Hats, boots, tees, buckles, and limited drops on their own shelf.' },
-      { name: 'Rewards', href: '/rewards', desc: 'Points, levels, perks, and the Leak Wrangler game.' },
-    ],
-  },
-  {
-    label: 'Company', kicker: 'PEOPLE · CAPABILITY · FAMILY',
-    feature: { name: 'Meet the Cowboy standard', href: '/quality', desc: 'Nice people, serious roofs, no roofing riddles.' },
-    links: [
-      { name: 'Our quality', href: '/quality', desc: 'How every job is protected and checked.' },
-      { name: 'Family Share Desk', href: '/share', desc: 'One-tap Facebook posts, a trackable link, and a clean referral trail.' },
-      { name: 'Growth Command Center', href: '/growth', desc: 'Model the funnel, run the 30-day plan, prioritize leads, and forge local content.' },
-      { name: 'Local Lead Desk', href: '/leads', desc: 'Organize permission-based inquiries from introduction to outcome on the current device.' },
-      { name: 'Referral Partner Network', href: '/network', desc: 'Build distinct local referral trails for real, trusted relationships.' },
-      { name: 'Roofing Operations Center', href: '/operations', desc: 'Plan intake, materials, scope, crew-day controls, and project closeout.' },
-      { name: 'Neighbor roof check', href: '/neighbors', desc: 'The focused landing page for family and neighborhood referrals.' },
-      { name: 'Large-scale services', href: '/services#commercial', desc: 'Commercial, complex, arena, and high-rise capability.' },
-      { name: 'Trust, legal & tax readiness', href: '/legal', desc: 'Customer terms, claims boundaries, consent, tax facts, and operating controls.' },
-      { name: 'Family companies', href: '/family', desc: 'Airoze, pressure washing, and the wider network.' },
-      { name: 'Service areas', href: '/service-areas', desc: 'Alpharetta, Roswell, Milton, Johns Creek, Cumming, and nearby.' },
-    ],
-  },
-];
+import { navigationGroups } from '../site-directory';
 
 function BrandMark() {
   return <span className="brand-mark" aria-hidden="true"><i className="crest-hat"/><i className="crest-roof"/><i className="crest-boot left"/><i className="crest-boot right"/></span>;
@@ -59,6 +13,7 @@ function BrandMark() {
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeBranches, setActiveBranches] = useState<Record<string, string>>({});
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
   const path = usePathname();
@@ -66,6 +21,7 @@ export function SiteHeader() {
     const timer = window.setTimeout(() => {
       setOpen(false);
       setActiveMenu(null);
+      setActiveBranches({});
     }, 0);
     return () => window.clearTimeout(timer);
   }, [path]);
@@ -84,6 +40,9 @@ export function SiteHeader() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMenu(label);
   };
+  const selectBranch = (groupId: string, branchId: string) => {
+    setActiveBranches((current) => ({ ...current, [groupId]: branchId }));
+  };
   const leave = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setActiveMenu(null), 180);
@@ -94,10 +53,75 @@ export function SiteHeader() {
       <Link className="brand" href="/"><BrandMark/><span>COWBOY<small>ROOF SUPPORT</small></span></Link>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle menu">{open ? 'CLOSE' : 'MENU'}</button>
       <nav className={open ? 'nav open' : 'nav'} aria-label="Main navigation" onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current); }}>
-        {groups.map((group) => <div className={activeMenu === group.label ? 'dropdown is-open' : 'dropdown'} key={group.label} onMouseEnter={() => enter(group.label)} onMouseLeave={leave}>
-          <button className="menu-trigger" type="button" aria-expanded={activeMenu === group.label} aria-controls={`menu-${group.label.toLowerCase()}`} onKeyDown={(event) => { if (event.key === 'ArrowDown') { event.preventDefault(); enter(group.label); } }} onClick={() => enter(group.label)}>{group.label} <span>⌄</span></button>
-          <div id={`menu-${group.label.toLowerCase()}`} className="drop-panel mega-v2"><div className="drop-feature"><small>{group.kicker}</small><Link href={group.feature.href}><span className="drop-number">C</span><b>{group.feature.name}</b><p>{group.feature.desc}</p><strong>OPEN →</strong></Link></div><div className="drop-links">{group.links.map((item) => <Link key={item.href + item.name} href={item.href}><span><b>{item.name}</b><small>{item.desc}</small></span><i>→</i></Link>)}</div></div>
-        </div>)}
+        <Link className="nav-home-link" href="/"><i aria-hidden="true">⌂</i>HOME</Link>
+        {navigationGroups.map((group) => {
+          const branches = group.children || [];
+          const selectedBranch = branches.find((branch) => branch.id === activeBranches[group.id]) || branches[0];
+          return <div className={activeMenu === group.id ? 'dropdown is-open' : 'dropdown'} data-menu={group.id} key={group.id} onMouseEnter={() => enter(group.id)} onMouseLeave={leave}>
+            <div className="menu-root">
+              <Link className="menu-root-link" href={group.href} onFocus={() => enter(group.id)}>{group.label}</Link>
+              <button
+                className="menu-trigger"
+                type="button"
+                aria-label={`Open ${group.label} directory`}
+                aria-expanded={activeMenu === group.id}
+                aria-controls={`menu-${group.id}`}
+                onKeyDown={(event) => {
+                  if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    enter(group.id);
+                  }
+                }}
+                onClick={() => setActiveMenu((current) => current === group.id ? null : group.id)}
+              ><span>⌄</span></button>
+            </div>
+            <div id={`menu-${group.id}`} className="drop-panel mega-v3">
+              <div className="drop-feature">
+                <small>{group.eyebrow}</small>
+                <Link href={group.href}>
+                  <span className="drop-number">{group.id.slice(0, 1).toUpperCase()}</span>
+                  <b>{group.label} Hub</b>
+                  <p>{group.description}</p>
+                  <strong>{group.featureLabel} →</strong>
+                </Link>
+                <Link className="drop-all-files" href="/directory">ALL FILES · INFINITE DIRECTORY →</Link>
+              </div>
+              <div className="drop-branches">
+                <header><small>{group.kicker}</small><b>CHOOSE A CABINET</b></header>
+                {branches.map((branch, index) => <div className={selectedBranch?.id === branch.id ? 'active' : ''} key={branch.id} onMouseEnter={() => selectBranch(group.id, branch.id)}>
+                  <Link href={branch.href} onFocus={() => selectBranch(group.id, branch.id)}>
+                    <small>0{index + 1}</small>
+                    <span><b>{branch.label}</b><em>{branch.description}</em></span>
+                  </Link>
+                  {!!branch.children?.length && <button type="button" aria-label={`Open ${branch.label} folders`} onClick={() => selectBranch(group.id, branch.id)}>›</button>}
+                </div>)}
+              </div>
+              <div className="drop-depth">
+                {selectedBranch && <>
+                  <header>
+                    <div><small>{selectedBranch.eyebrow || 'NEXT DIRECTORY'}</small><b>{selectedBranch.label}</b></div>
+                    <Link href={selectedBranch.href}>OPEN CABINET →</Link>
+                  </header>
+                  <div className="drop-depth-files">
+                    {(selectedBranch.children || []).map((file, index) => <article key={file.id}>
+                      <Link className="depth-file" href={file.href}>
+                        <small>FILE {String(index + 1).padStart(2, '0')}</small>
+                        <b>{file.label}</b>
+                        <p>{file.description}</p>
+                        <strong>OPEN PAGE →</strong>
+                      </Link>
+                      {!!file.children?.length && <div className="depth-subfiles">
+                        <span>MORE SPLITS</span>
+                        {file.children.map((subfile) => <Link href={subfile.href} key={subfile.id}><b>{subfile.label}</b><small>{subfile.description}</small><i>→</i></Link>)}
+                      </div>}
+                    </article>)}
+                  </div>
+                </>}
+              </div>
+            </div>
+          </div>;
+        })}
+        <Link className="nav-directory-link" href="/directory"><i/>All files</Link>
         <Link className="ai-nav-link" href="/roof-advisor"><i/>AI Advisor</Link>
       </nav>
       <Link className="nav-cta" href="/free-inspection">FREE INSPECTION <span>→</span></Link>
@@ -113,6 +137,6 @@ export function SiteFooter() {
     <div><Link className="brand inverse" href="/"><BrandMark/><span>COWBOY<small>ROOF SUPPORT</small></span></Link><p>Home-first roofing with the capability to go far beyond it. Built for North Atlanta.</p></div>
     <div><small>START</small><Link href="/free-inspection">Free inspection</Link><a href="tel:+14708342519">Call (470) 834-2519</a><Link href="/neighbors">Neighbor roof check</Link><Link href="/share">Family Share Desk</Link><Link href="/growth">Growth Command Center</Link><Link href="/leads">Local Lead Desk</Link><Link href="/network">Referral Partner Network</Link><Link href="/operations">Roofing Operations Center</Link><Link href="/project-center">Roof Command Center</Link><Link href="/roof-advisor">Smart Roof Advisor</Link><Link href="/customize">Customize</Link></div>
     <div><small>SERVICES</small><Link href="/roof-replacement">Roof replacement</Link><Link href="/roof-repair">Roof repair</Link><Link href="/storm-damage">Storm damage</Link><Link href="/commercial-roofing">Commercial roofing</Link><Link href="/transformations">Transformations</Link><Link href="/service-areas">Service areas</Link></div>
-    <div><small>LIBRARY + TRUST</small><Link href="/library">Roofing Library</Link><Link href="/quality">Quality & Protection</Link><Link href="/legal">Legal & tax readiness</Link><Link href="/privacy">Privacy</Link><Link href="/accessibility">Accessibility</Link><Link href="/terms">Terms</Link><Link href="/family">Family companies</Link></div>
+    <div><small>LIBRARY + TRUST</small><Link href="/">Home</Link><Link href="/directory">All Files Directory</Link><Link href="/roofing">Roofing Hub</Link><Link href="/shop">Shop Hub</Link><Link href="/company">Company Hub</Link><Link href="/library">Roofing Library</Link><Link href="/quality">Quality & Protection</Link><Link href="/legal">Legal & tax readiness</Link><Link href="/privacy">Privacy</Link><Link href="/accessibility">Accessibility</Link><Link href="/terms">Terms</Link><Link href="/family">Family companies</Link></div>
   </div><div className="footer-base"><span>© 2026 COWBOY ROOF SUPPORT</span><span><Link href="/terms">TERMS</Link> · <Link href="/privacy">PRIVACY</Link> · ROOFED RIGHT. COWBOY BUILT.</span></div></footer>;
 }
