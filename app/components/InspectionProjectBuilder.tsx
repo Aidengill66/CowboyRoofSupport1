@@ -27,6 +27,17 @@ type Draft = {
 
 type DraftKey = keyof Draft;
 type PhotoRecord = { file: File; url: string };
+type AdvisorTransfer = {
+  version: number;
+  createdAt: string;
+  input: { age: number; issue: string; material: string; slope: string; attic: string; property: string; priority: string; horizon: string };
+  action: string;
+  confidence: number;
+  repair: number;
+  replace: number;
+  system: string;
+  brief: string;
+};
 
 const emptyDraft: Draft = {
   service: '', urgency: 'Planning / no active leak', concern: '', address: '', city: '', propertyType: 'Single-family home', stories: '2 stories', roof: 'Not sure — inspect it', age: 'Not sure', access: 'Standard access', name: '', phone: '', email: '', preferredDay: 'First available', preferredWindow: 'Any time', contactMethod: 'Text first', notes: '', permission: false,
@@ -54,6 +65,31 @@ function safeSavedDraft(value: string | null): Partial<Draft> {
   }
 }
 
+function safeAdvisorTransfer(value: string | null): AdvisorTransfer | null {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value) as AdvisorTransfer;
+    return parsed?.version === 1 && parsed.input && typeof parsed.action === 'string' ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+const advisorRoofMap: Record<string, string> = {
+  shingle: 'Asphalt shingles', metal: 'Standing seam or exposed-fastener metal', membrane: 'Flat / low-slope membrane', tile: 'Tile, slate, shake, or specialty', unknown: 'Not sure — inspect it',
+};
+const advisorPropertyMap: Record<string, string> = { home: 'Single-family home', estate: 'Single-family home', commercial: 'Office / retail building' };
+const advisorConcernMap: Record<string, string> = {
+  planning: 'Planning ahead; no urgent symptom.', active: 'Water is entering now.', recurring: 'Interior stain or recurring wet spot.', storm: 'New concern after recent wind or storm.', wear: 'Visible widespread wear or aging roof material.',
+};
+
+function advisorAge(age: number) {
+  if (age <= 7) return '0–7 years';
+  if (age <= 15) return '8–15 years';
+  if (age <= 22) return '16–22 years';
+  return '23+ years';
+}
+
 export function InspectionProjectBuilder() {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<Draft>(emptyDraft);
@@ -65,6 +101,7 @@ export function InspectionProjectBuilder() {
   const [complete, setComplete] = useState(false);
   const [copied, setCopied] = useState(false);
   const [requestId, setRequestId] = useState('');
+  const [advisorContext, setAdvisorContext] = useState<AdvisorTransfer | null>(null);
   const photoUrls = useRef<string[]>([]);
 
   useEffect(() => {
@@ -73,8 +110,16 @@ export function InspectionProjectBuilder() {
     const service = serviceMap[params.get('service') || ''];
     const issue = issueMap[params.get('issue') || ''];
     const city = params.get('city') || '';
+    const advisor = params.get('source') === 'advisor' ? safeAdvisorTransfer(window.localStorage.getItem('cowboy-roof-advisor-transfer')) : null;
+    const advisorDraft: Partial<Draft> = advisor ? {
+      concern: advisorConcernMap[advisor.input.issue] || '',
+      propertyType: advisorPropertyMap[advisor.input.property] || emptyDraft.propertyType,
+      roof: advisorRoofMap[advisor.input.material] || emptyDraft.roof,
+      age: advisorAge(advisor.input.age),
+    } : {};
     const timer = window.setTimeout(() => {
-      setDraft((current) => ({ ...current, ...stored, ...(service ? { service } : {}), ...(issue ? { concern: issue } : {}), ...(city ? { city } : {}) }));
+      setDraft((current) => ({ ...current, ...advisorDraft, ...stored, ...(service ? { service } : {}), ...(issue ? { concern: issue } : {}), ...(city ? { city } : {}) }));
+      setAdvisorContext(advisor);
       setAttribution(captureLeadAttribution());
       setHydrated(true);
     }, 0);
@@ -129,9 +174,10 @@ export function InspectionProjectBuilder() {
     `Notes: ${draft.notes || 'None'}`,
     `Photos prepared: ${photos.length}${photos.length ? ' (attach manually to email)' : ''}`,
     `Lead source: ${referral || 'Direct / not provided'}`,
+    ...(advisorContext ? ['', 'ROOF ADVISOR CONTEXT', `Likely path: ${advisorContext.action}`, `Primary system match: ${advisorContext.system}`, `Repair / replacement signal: ${advisorContext.repair}% / ${advisorContext.replace}%`, `Advisor input confidence: ${advisorContext.confidence}%`] : []),
     '',
     'No appointment exists until a Cowboy Roof Support team member confirms it.',
-  ].join('\n'), [draft, location, photos.length, referral, requestId]);
+  ].join('\n'), [advisorContext, draft, location, photos.length, referral, requestId]);
 
   const validate = (targetStep = step) => {
     const next: typeof errors = {};
@@ -258,6 +304,7 @@ export function InspectionProjectBuilder() {
       <div className="inspection-stage">
         {step === 1 && <section className="inspection-stage-panel">
           <header><span>01</span><div><small>START WITH THE JOB</small><h2>What does the roof need?</h2><p>Choose the closest fit. The inspection—not this form—confirms the actual scope.</p></div></header>
+          {advisorContext && <div className="inspection-advisor-import"><div><small>ROOF ADVISOR CONNECTED</small><b>{advisorContext.action}</b><span>{advisorContext.system}</span></div><strong>{advisorContext.confidence}%<small>INPUT CONFIDENCE</small></strong><button type="button" onClick={() => { window.localStorage.removeItem('cowboy-roof-advisor-transfer'); setAdvisorContext(null); }}>REMOVE</button></div>}
           {referral && <div className="inspection-referral"><small>REFERRED HERE BY</small><b>{referral}</b><span>✓ SOURCE REMEMBERED</span></div>}
           <fieldset className="inspection-options"><legend>SERVICE PATH</legend><div>{['Free roof inspection','Leak / roof repair','Storm damage inspection','Roof replacement','Commercial roofing','Not sure — advise me'].map((value) => <button type="button" key={value} className={draft.service === value ? 'selected' : ''} onClick={() => update('service', value)}><i/>{value}<span>{draft.service === value ? '✓' : '+'}</span></button>)}</div>{errors.service && <em>{errors.service}</em>}</fieldset>
           <fieldset className="inspection-options urgency-options"><legend>URGENCY</legend><div>{['Active leak now','Within 24–48 hours','This week','Planning / no active leak'].map((value) => <button type="button" key={value} className={draft.urgency === value ? 'selected' : ''} onClick={() => update('urgency', value)}><i/>{value}</button>)}</div>{errors.urgency && <em>{errors.urgency}</em>}</fieldset>
@@ -325,6 +372,7 @@ export function InspectionProjectBuilder() {
         <div className="inspection-score"><i><b style={{ width: `${score}%` }} /></i><span>{score < 45 ? 'STARTED' : score < 80 ? 'CREW CONTEXT BUILDING' : 'HANDOFF READY'}</span></div>
         {safetyPriority && <div className="inspection-urgent-card"><small>ACTIVE-LEAK PRIORITY</small><b>Protect people first.</b><p>Move valuables only if safe. Stay away from sagging ceilings, water near electricity, and damaged roof areas. Call emergency services for immediate danger.</p><a href="tel:+14708342519">CALL (470) 834-2519 →</a></div>}
         <section><small>LIVE PROJECT FILE</small><dl><div><dt>SERVICE</dt><dd>{draft.service || 'Not selected'}</dd></div><div><dt>PROPERTY</dt><dd>{draft.city || 'City not entered'} · {draft.propertyType}</dd></div><div><dt>ROOF</dt><dd>{draft.roof}</dd></div><div><dt>EVIDENCE</dt><dd>{photos.length ? `${photos.length} photo${photos.length === 1 ? '' : 's'} ready` : 'No photos yet'}</dd></div><div><dt>ROUTING</dt><dd>{draft.preferredDay} · {draft.contactMethod}</dd></div></dl></section>
+        {advisorContext && <div className="inspection-readiness-advisor"><small>ADVISOR HANDOFF</small><b>{advisorContext.action}</b><span>{advisorContext.system}</span><i>Planning context only · field verification required</i></div>}
         <div className="inspection-trust-stack"><span><i>✓</i><b>TEXT DRAFT SAVED ON THIS DEVICE</b></span><span><i>✓</i><b>PHOTOS STAY LOCAL UNTIL YOU ATTACH</b></span><span><i>✓</i><b>HUMAN APPOINTMENT CONFIRMATION</b></span><span><i>✓</i><b>NO INSURANCE OR PRICE PROMISES</b></span></div>
         <p className="inspection-readiness-note">Close and return on this device to continue the text draft. Selected photos cannot be restored after closing or refreshing.</p>
       </aside>

@@ -214,6 +214,65 @@
   gap: 4px 12px;
 }
 
+.inspection-advisor-import {
+  min-height: 84px;
+  margin-bottom: 12px;
+  padding: 13px;
+  border: 1px solid #ce7b46;
+  background: #fff4e9;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 17px;
+  box-shadow: inset 4px 0 #d67232;
+}
+
+.inspection-advisor-import > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inspection-advisor-import small {
+  color: #a85223;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.inspection-advisor-import b {
+  font: 17px Georgia, serif;
+}
+
+.inspection-advisor-import span {
+  color: #6d5b50;
+  font: 8px Georgia, serif;
+}
+
+.inspection-advisor-import strong {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #a85223;
+  font: 24px Georgia, serif;
+}
+
+.inspection-advisor-import strong small {
+  color: #8b796d;
+  font: 5px Arial, sans-serif;
+}
+
+.inspection-advisor-import button {
+  border: 0;
+  border-bottom: 1px solid #9c775f;
+  padding: 4px 0;
+  background: transparent;
+  color: #765845;
+  font-size: 5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .inspection-referral small,
 .inspection-referral span {
   color: #608039;
@@ -902,6 +961,39 @@
   border-top: 1px solid #303c33;
 }
 
+.inspection-readiness-advisor {
+  margin: 0 0 18px;
+  padding: 15px;
+  border: 1px solid #6d492f;
+  background: #1e130c;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.inspection-readiness-advisor small {
+  color: #d89060;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.inspection-readiness-advisor b {
+  font: 18px Georgia, serif;
+}
+
+.inspection-readiness-advisor span {
+  color: #c5a48f;
+  font: 8px/1.35 Georgia, serif;
+}
+
+.inspection-readiness-advisor i {
+  color: #806b5d;
+  font-size: 5px;
+  font-style: normal;
+  letter-spacing: .08em;
+}
+
 .inspection-trust-stack span {
   min-height: 35px;
   display: flex;
@@ -1183,6 +1275,15 @@
   .inspection-review-grid,
   .inspection-complete-actions {
     grid-template-columns: 1fr;
+  }
+
+  .inspection-advisor-import {
+    grid-template-columns: 1fr auto;
+  }
+
+  .inspection-advisor-import button {
+    grid-column: 1 / 3;
+    justify-self: start;
   }
 
   .inspection-form-grid label.wide {
