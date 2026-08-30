@@ -9,6 +9,7 @@ import './repair-command.css';
 import './inspection-builder.css';
 import './customer-center.css';
 import './cowboy-theme.css';
+import './experience-upgrade.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { PageIdentityLayer } from './components/PageIdentityLayer';
 import { InteractionLayer } from './components/InteractionLayer';
