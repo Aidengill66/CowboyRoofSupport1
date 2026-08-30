@@ -17,7 +17,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 00', collection: 'THE FRONT PORCH', title: 'Cowboy Roof Support',
     purpose: 'See the company, choose the roof problem, and reach the right trail without wandering.',
     outcomes: ['Choose a need', 'Meet the standard', 'Start with confidence'],
-    action: { href: '/start', label: 'START A PROJECT' }, accent: '#8fcf35', motif: 'cattle-grid', showRail: false,
+    action: { href: '/start', label: 'START A PROJECT' }, accent: '#e77b3c', motif: 'cattle-grid', showRail: false,
   },
   '/start': {
     code: 'CRS / 01', collection: 'PROJECT INTAKE', title: 'Start a Roof Project',
@@ -35,7 +35,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 03', collection: 'ROOF INTELLIGENCE', title: 'Cowboy Roof Advisor',
     purpose: 'Combine field questions and curated roof logic into a responsible starting recommendation.',
     outcomes: ['Analyze six factors', 'Compare assemblies', 'Know the limits'],
-    action: { href: '#advisor-workbench', label: 'RUN THE ADVISOR' }, accent: '#9ee044', motif: 'signal',
+    action: { href: '#advisor-workbench', label: 'RUN THE ADVISOR' }, accent: '#f09a56', motif: 'signal',
   },
   '/customize': {
     code: 'CRS / 04', collection: 'DESIGN STUDIO', title: 'Customize Your Roof',
@@ -47,7 +47,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 05', collection: 'HOMEOWNER COMMAND', title: 'Roof Command Center',
     purpose: 'Keep routing, preparation, timing, and the full project path together in one working surface.',
     outcomes: ['Route the project', 'Prepare the property', 'Track each stage'],
-    action: { href: '#command-workspace', label: 'OPEN COMMAND CENTER' }, accent: '#a7d66f', motif: 'ledger',
+    action: { href: '#command-workspace', label: 'OPEN COMMAND CENTER' }, accent: '#de7b44', motif: 'ledger',
   },
   '/roofing': {
     code: 'CRS / 10', collection: 'ROOFING CABINET', title: 'Residential Roofing Hub',
@@ -125,7 +125,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 22', collection: 'MASTER INDEX', title: 'All Files Directory',
     purpose: 'Search the entire site and open any branch without losing the path back home.',
     outcomes: ['Search every page', 'Follow each split', 'Keep your breadcrumb'],
-    action: { href: '#directory-explorer', label: 'EXPLORE THE DIRECTORY' }, accent: '#8bca7e', motif: 'ledger',
+    action: { href: '#directory-explorer', label: 'EXPLORE THE DIRECTORY' }, accent: '#d9824d', motif: 'ledger',
   },
   '/shop': {
     code: 'CRS / 30', collection: 'COMMERCE CABINET', title: 'Shop Hub',
@@ -203,7 +203,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 48', collection: 'BUSINESS OPERATIONS', title: 'Roofing Operations Center',
     purpose: 'Connect lead intake, estimating, scheduling, job control, closeout, and follow-up as one system.',
     outcomes: ['See the pipeline', 'Control each stage', 'Close the record'],
-    action: { href: '/project-center', label: 'OPEN PROJECT COMMAND' }, accent: '#6dcab8', motif: 'ledger',
+    action: { href: '/project-center', label: 'OPEN PROJECT COMMAND' }, accent: '#c85d2b', motif: 'ledger',
   },
   '/legal': {
     code: 'CRS / 50', collection: 'TRUST CONTROL', title: 'Legal & Tax Readiness',
@@ -227,7 +227,7 @@ const pages: Record<string, PageIdentity> = {
     code: 'CRS / 53', collection: 'ACCESS STANDARD', title: 'Accessibility',
     purpose: 'Make the site easier to navigate, understand, and use across keyboards, touch, motion, and vision needs.',
     outcomes: ['Navigate clearly', 'Control motion', 'Report a barrier'],
-    action: { href: '/', label: 'RETURN HOME' }, accent: '#8dd7bd', motif: 'signal',
+    action: { href: '/', label: 'RETURN HOME' }, accent: '#db7840', motif: 'signal',
   },
 };
 
@@ -274,6 +274,6 @@ export function resolvePageIdentity(path: string): PageIdentity {
     code: 'CRS / XX', collection: 'COWBOY ROOF SUPPORT', title: 'Roof Support',
     purpose: 'Give this roofing decision a focused place, a clear outcome, and one useful next action.',
     outcomes: ['Understand the page', 'Open the right file', 'Take the next step'],
-    action: { href: '/directory', label: 'OPEN ALL FILES' }, accent: '#8fcf35', motif: 'cattle-grid',
+    action: { href: '/directory', label: 'OPEN ALL FILES' }, accent: '#e77b3c', motif: 'cattle-grid',
   };
 }

@@ -1,0 +1,270 @@
+/* Premium cowboy color system — loaded last so every route shares one warm identity. */
+:root {
+  --black: #0d0907;
+  --carbon: #17100d;
+  --bone: #f5eee6;
+  --fog: #e4d8cc;
+  --steel: #9b8d82;
+  --copper: #d66a2f;
+  --copper2: #f2aa6f;
+  --saddle: #8f3f1e;
+  --leather: #4b2417;
+  --line: #d8c8ba;
+  --signal: #d66a2f;
+  --signal-soft: #f2aa6f;
+  --graphite: #0d0907;
+  --panel: #16100d;
+  --panel-2: #211611;
+}
+
+::selection {
+  background: #d66a2f;
+  color: #fffaf5;
+}
+
+body {
+  background: radial-gradient(circle at 8% 0%, #fff8f0 0, transparent 26rem), var(--bone);
+}
+
+.utility {
+  background: linear-gradient(90deg, #160d09 0%, #2f170f 48%, #160d09 100%);
+  border-bottom: 1px solid #6f351f;
+}
+
+.utility span:nth-child(2) { color: #c7b5a7; }
+.utility a { color: #ffc08a; }
+
+.header {
+  background: #100b08ee;
+  border-color: #4b2a1d;
+  box-shadow: 0 12px 40px #2a120b24;
+}
+
+.brand-mark {
+  background: linear-gradient(145deg, #2b1710, #120b08);
+  border-color: #8d4a2b;
+  box-shadow: inset 0 0 0 3px #1b0f0b, 0 0 0 1px #f2aa6f25;
+}
+
+.brand-mark::after { border-color: #f2aa6f; }
+.nav > a,
+.dropdown > summary { color: #fff7ef; }
+.nav > a:hover,
+.dropdown > summary:hover { color: #ffc08a; }
+
+.nav-cta,
+.primary,
+.request-button,
+.buy-summary > a,
+.request-success a {
+  background: linear-gradient(135deg, #eb7c3d, #c45324);
+  color: #1a0c07;
+  border-color: #ef8a4d;
+  box-shadow: 0 9px 25px #d66a2f2e;
+}
+
+.nav-cta:hover,
+.primary:hover,
+.request-button:hover,
+.buy-summary > a:hover {
+  background: linear-gradient(135deg, #ff9a5b, #d9602a);
+  transform: translateY(-1px);
+}
+
+.nav-cta span,
+.primary span { color: #361609; }
+
+.drop-panel.mega-v2,
+.drop-panel {
+  background: #17100d;
+  border-color: #4c2a1d;
+  box-shadow: 0 34px 90px #100704a8, inset 0 1px #f7bd8b10;
+}
+
+.drop-feature { background: #100b08; }
+.drop-feature > a { background: #21130e !important; }
+.drop-feature > a:hover { background: #321b12 !important; }
+.drop-feature .drop-number { border-color: #8f4a2c; }
+.drop-links { background: #17100d; }
+.drop-links > a { border-color: #3d251b; }
+.drop-links > a:hover { background: #2a1811 !important; }
+.drop-links small { color: #ad9a8c; }
+
+.home-hero {
+  background: radial-gradient(circle at 72% 28%, #572716 0, #1e100b 31%, #090605 76%);
+}
+
+.home-hero::before,
+.start-hero::before,
+.legal-hero::before,
+.command-intro::before,
+.system-lab::before,
+.inspection-builder-hero::before,
+.repair-command-hero::before {
+  background-image: linear-gradient(#f2aa6f0a 1px, transparent 1px), linear-gradient(90deg, #f2aa6f0a 1px, transparent 1px);
+}
+
+.home-hero .hero-copy > p:not(.eyebrow) { color: #c6b4a6; }
+.hero-architecture {
+  border-color: #6f3a25;
+  box-shadow: 12px 12px 0 #d66a2f, 0 24px 70px #0007;
+}
+
+.promise-strip {
+  background: #160e0a;
+  color: #eee0d3;
+  border-color: #4a2c20;
+}
+
+.start-hero,
+.legal-hero,
+.command-intro,
+.inspection-hero,
+.share-hero,
+.neighbor-hero {
+  background: radial-gradient(circle at 78% 20%, #5a2818 0, #20110c 38%, #090605 78%);
+}
+
+.system-lab,
+.compliance-planner,
+.expert-teaser,
+.file-related,
+.inspection-links,
+.category-actions,
+.goods-note,
+.policy-contact,
+.share-rules,
+.neighbor-promise,
+.city-neighbor-links {
+  background-color: #100b08;
+}
+
+.priority-tabs,
+.lab-workspace,
+.compliance-app,
+.teaser-readout,
+.copilot-panel,
+.share-console {
+  border-color: #4a2c20;
+}
+
+.priority-tabs button,
+.lab-workspace,
+.lab-details,
+.compliance-app,
+.copilot-panel,
+.teaser-readout {
+  background-color: #17100d;
+}
+
+.priority-tabs button.active,
+.teaser-readout b,
+.quick-dock a:first-child,
+.copilot-panel > form button,
+.lab-actions a:first-child,
+.share-actions button {
+  background: linear-gradient(135deg, #e97a3b, #bd4f22);
+  color: #190b06;
+}
+
+.lab-selector button.active,
+.compliance-app > nav button.active,
+.chat-message.user { background: #2a1811; }
+
+.lab-visual {
+  background: radial-gradient(circle at 72% 24%, #6c3826 0, #2a1811 25%, #100b08 68%);
+}
+
+.copilot-launch {
+  background: #17100df2;
+  border-color: #67402f;
+  box-shadow: 0 15px 45px #2a120b50;
+}
+
+.copilot-panel > header,
+.copilot-prompts,
+.copilot-panel > form { border-color: #4a2c20; }
+.chat-message { background: #241710; border-color: #4a2c20; }
+.copilot-prompts button { background: #1d120d; border-color: #4a2c20; }
+.copilot-prompts button:hover { background: #321b12; }
+.copilot-panel > form input { background: #1d120d; }
+.copilot-panel > footer { background: #0d0907; color: #8e786a; }
+
+.scroll-progress { background: #2a1811; }
+.scroll-progress i { box-shadow: 0 0 14px #e77b3c; }
+.back-to-top { background: #17100df0; border-color: #67402f; }
+
+.buy-step:hover,
+.need-grid button.selected,
+.system-grid button.selected,
+.urgency-grid button.selected { border-color: #d66a2f; }
+
+.need-grid button.selected,
+.system-grid button.selected,
+.option-grid button.selected,
+.story-row button.selected { background: #f8e7da; }
+
+.buy-summary { background: #130c09; box-shadow: 9px 9px 0 #d66a2f; }
+
+.home-trust header > a,
+.home-trust > div i,
+.spend-paths a > i,
+.spend-paths a strong,
+.file-process article span,
+.inspection-expect article small,
+.system-shelves small,
+.policy-files article small,
+.policy-files > aside small,
+.post-shelf small,
+.neighbor-concerns a small,
+.campaign-builder > header small,
+.organic-cadence small,
+.neighbor-city-routes small,
+.city-handoff article small { color: #b95529; }
+
+.field-goods-page,
+.policy-page,
+.share-page,
+.neighbors-page,
+.legal-page,
+.command-page,
+.config-page { background: #f2e9e0; }
+
+.goods-hero,
+.policy-hero,
+.category-hero {
+  background: radial-gradient(circle at 78% 18%, #4c2315, #180e0a 46%, #090605 82%);
+}
+
+.goods-hero aside { background: linear-gradient(150deg, #e77b3c, #93401d); }
+.share-next { background: linear-gradient(110deg, #9f421e, #dd7437); }
+
+.page-identity-bar,
+.page-action-rail a { box-shadow: 0 12px 38px #2e130b2e; }
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #d66a2f !important;
+  box-shadow: 0 0 0 3px #d66a2f1c !important;
+}
+
+@media (hover: hover) {
+  .route-card:hover,
+  .system-shelves > a:hover,
+  .upgrade-shelves > a:hover,
+  .neighbor-concerns a:hover,
+  .neighbor-city-routes a:hover {
+    box-shadow: 0 16px 45px #6d2d1620, inset 0 -3px #d66a2f;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    background: #130c09;
+    border-color: #4a2c20;
+  }
+
+  .drop-panel,
+  .drop-panel.mega-v2 { box-shadow: none; }
+}
