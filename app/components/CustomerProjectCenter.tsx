@@ -17,6 +17,9 @@ type ProjectState = {
   upgrades: string[];
   documents: string[];
   contact: string;
+  origin: 'demo' | 'inspection';
+  requestId: string;
+  updatedAt: string;
 };
 
 const storageKey = 'crs-customer-project-center';
@@ -34,6 +37,9 @@ const initialState: ProjectState = {
   upgrades: ['Water-control package'],
   documents: ['request-summary'],
   contact: 'Text first',
+  origin: 'demo',
+  requestId: 'DEMO-ROOF-FILE',
+  updatedAt: '',
 };
 
 const milestones = [
@@ -134,6 +140,7 @@ export function CustomerProjectCenter() {
   const projectSummary = useMemo(() => [
     'COWBOY ROOF SUPPORT · MY ROOF SUMMARY',
     `Customer: ${project.customer}`,
+    `Project file: ${project.requestId}`,
     `Project: ${project.project}`,
     `Property: ${project.propertyType} · ${project.city}, GA`,
     `Current stage: ${activeMilestone.label} — ${activeMilestone.status}`,
@@ -162,7 +169,7 @@ export function CustomerProjectCenter() {
   };
 
   const reset = () => {
-    if (!window.confirm('Reset this device-local demo project?')) return;
+    if (!window.confirm('Reset this device-local project file?')) return;
     window.localStorage.removeItem(storageKey);
     setProject(initialState);
     setTimelineStage(initialState.stage);
@@ -172,12 +179,12 @@ export function CustomerProjectCenter() {
   return <section id="my-roof" className="customer-center" aria-labelledby="customer-center-title">
     <div className="customer-center-shell shell">
       <header className="customer-center-header">
-        <div className="customer-project-id"><span>◆</span><div><small>MY ROOF · DEVICE-LOCAL PROTOTYPE</small><h2 id="customer-center-title">{project.project}</h2><p>{project.propertyType} · {project.city}, Georgia</p></div></div>
+        <div className="customer-project-id"><span>◆</span><div><small>MY ROOF · {project.origin === 'inspection' ? project.requestId : 'DEVICE-LOCAL PROTOTYPE'}</small><h2 id="customer-center-title">{project.project}</h2><p>{project.propertyType} · {project.city}, Georgia</p></div></div>
         <div className="customer-stage-signal"><small>CURRENT CONTROL POINT</small><b>{activeMilestone.label}</b><span><i/> {activeMilestone.status}</span></div>
         <div className="customer-header-actions"><button type="button" onClick={() => copy()}>{copied ? 'COPIED ✓' : 'COPY SUMMARY'}</button><a href="tel:+14708342519">CALL TEAM</a></div>
       </header>
 
-      <div className="customer-prototype-note"><span><i/> EXPLORABLE DEMO</span><p>This workspace saves only on this device. It is not connected to a customer account, live schedule, document server, or crew system yet.</p><button type="button" onClick={reset}>RESET DEMO</button></div>
+      <div className="customer-prototype-note"><span><i/> {project.origin === 'inspection' ? 'INSPECTION FILE CONNECTED' : 'EXPLORABLE DEMO'}</span><p>{project.origin === 'inspection' ? 'This workspace was created from your prepared inspection file and saves on this device. The team must still receive and confirm the request.' : 'This workspace saves only on this device. It is not connected to a customer account, live schedule, document server, or crew system yet.'}</p><button type="button" onClick={reset}>RESET FILE</button></div>
 
       <nav className="customer-center-tabs" aria-label="My Roof project tools">
         {([['overview','Overview','Next action'],['timeline','Timeline','Six milestones'],['selections','Selections','System decisions'],['documents','Documents','Project record'],['messages','Message desk','Clear handoffs']] as [CenterView,string,string][]).map(([key, label, detail], index) => <button type="button" key={key} className={view === key ? 'active' : ''} onClick={() => setView(key)}><small>0{index + 1}</small><span><b>{label}</b><i>{detail}</i></span></button>)}

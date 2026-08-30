@@ -90,6 +90,24 @@ function advisorAge(age: number) {
   return '23+ years';
 }
 
+function projectSystem(advisor: AdvisorTransfer | null, roof: string) {
+  const match = advisor?.system.toLowerCase() || '';
+  if (match.includes('designer')) return 'Premium designer shingle';
+  if (match.includes('metal')) return '24-gauge standing seam metal';
+  if (match.includes('membrane')) return 'Low-slope membrane system';
+  if (match.includes('architectural')) return 'Class 4 architectural shingle';
+  if (/metal/i.test(roof)) return '24-gauge standing seam metal';
+  if (/membrane|low-slope/i.test(roof)) return 'Low-slope membrane system';
+  return 'Class 4 architectural shingle';
+}
+
+function projectPriority(advisor: AdvisorTransfer | null) {
+  const priorities: Record<string, string> = {
+    value: 'Balanced value + storm readiness', storm: 'Balanced value + storm readiness', longevity: 'Longest service-life path', design: 'Maximum curb appeal', efficiency: 'Longest service-life path',
+  };
+  return priorities[advisor?.input.priority || ''] || 'Balanced value + storm readiness';
+}
+
 export function InspectionProjectBuilder() {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<Draft>(emptyDraft);
@@ -245,7 +263,30 @@ export function InspectionProjectBuilder() {
     }
     const now = new Date();
     const date = now.toISOString().slice(2, 10).replaceAll('-', '');
-    setRequestId(`CRS-${date}-${String(now.getTime()).slice(-4)}`);
+    const nextRequestId = `CRS-${date}-${String(now.getTime()).slice(-4)}`;
+    const projectUpgrades = [
+      'Water-control package',
+      ...(advisorContext?.input.attic === 'hot' || advisorContext?.input.attic === 'moisture' ? ['Ventilation balance review'] : []),
+      ...(advisorContext?.input.slope === 'steep' || advisorContext?.input.slope === 'mixed' ? ['Premium edge + flashing package'] : []),
+    ];
+    window.localStorage.setItem('crs-customer-project-center', JSON.stringify({
+      customer: draft.name,
+      project: `${draft.address || draft.city || 'North Atlanta'} Roof Project`,
+      city: draft.city || 'Other North Atlanta',
+      propertyType: `${draft.stories} · ${draft.propertyType}`,
+      stage: 0,
+      tasks: ['confirm-contact', ...(draft.access !== 'Standard access' ? ['property-access'] : [])],
+      system: projectSystem(advisorContext, draft.roof),
+      color: 'Weathered charcoal',
+      priority: projectPriority(advisorContext),
+      upgrades: projectUpgrades,
+      documents: ['request-summary'],
+      contact: draft.contactMethod,
+      origin: 'inspection',
+      requestId: nextRequestId,
+      updatedAt: now.toISOString(),
+    }));
+    setRequestId(nextRequestId);
     setComplete(true);
     window.localStorage.removeItem('crs-inspection-draft');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -283,6 +324,7 @@ export function InspectionProjectBuilder() {
     {!!photos.length && <div className="inspection-photo-reminder"><b>{photos.length} PHOTO{photos.length === 1 ? '' : 'S'} READY</b><span>Attach these manually when your email opens.</span></div>}
     <div className="inspection-complete-actions">
       <a href={`mailto:hello@cowboyroofsupport.com?subject=${encodeURIComponent(`${draft.service} · ${requestId}`)}&body=${encodeURIComponent(summary)}`}>OPEN EMAIL HANDOFF <span>→</span></a>
+      <Link href="/project-center#my-roof">OPEN MY ROOF</Link>
       <a href="tel:+14708342519">CALL (470) 834-2519</a>
       <button type="button" onClick={copySummary}>{copied ? 'COPIED ✓' : 'COPY FULL BRIEF'}</button>
     </div>
