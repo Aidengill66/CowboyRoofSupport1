@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { ProposalCompare } from './ProposalCompare';
 
-type CenterView = 'overview' | 'timeline' | 'selections' | 'documents' | 'messages';
+type CenterView = 'overview' | 'timeline' | 'selections' | 'proposals' | 'documents' | 'messages';
 type ProjectState = {
   customer: string;
   project: string;
@@ -187,7 +188,7 @@ export function CustomerProjectCenter() {
       <div className="customer-prototype-note"><span><i/> {project.origin === 'inspection' ? 'INSPECTION FILE CONNECTED' : 'EXPLORABLE DEMO'}</span><p>{project.origin === 'inspection' ? 'This workspace was created from your prepared inspection file and saves on this device. The team must still receive and confirm the request.' : 'This workspace saves only on this device. It is not connected to a customer account, live schedule, document server, or crew system yet.'}</p><button type="button" onClick={reset}>RESET FILE</button></div>
 
       <nav className="customer-center-tabs" aria-label="My Roof project tools">
-        {([['overview','Overview','Next action'],['timeline','Timeline','Six milestones'],['selections','Selections','System decisions'],['documents','Documents','Project record'],['messages','Message desk','Clear handoffs']] as [CenterView,string,string][]).map(([key, label, detail], index) => <button type="button" key={key} className={view === key ? 'active' : ''} onClick={() => setView(key)}><small>0{index + 1}</small><span><b>{label}</b><i>{detail}</i></span></button>)}
+        {([['overview','Overview','Next action'],['timeline','Timeline','Six milestones'],['selections','Selections','System decisions'],['proposals','Bid check','Compare scope'],['documents','Documents','Project record'],['messages','Message desk','Clear handoffs']] as [CenterView,string,string][]).map(([key, label, detail], index) => <button type="button" key={key} className={view === key ? 'active' : ''} onClick={() => setView(key)}><small>0{index + 1}</small><span><b>{label}</b><i>{detail}</i></span></button>)}
       </nav>
 
       <div className="customer-center-workspace">
@@ -211,6 +212,8 @@ export function CustomerProjectCenter() {
           <section className="customer-upgrade-picker"><small>04 · PERFORMANCE QUESTIONS</small><div>{upgrades.map(([name, copy]) => <button type="button" key={name} className={project.upgrades.includes(name) ? 'selected' : ''} onClick={() => toggleArray('upgrades', name)}><i>{project.upgrades.includes(name) ? '✓' : '+'}</i><span><b>{name}</b><small>{copy}</small></span></button>)}</div></section>
           <aside className="customer-selection-summary"><div className="customer-selection-swatch" style={{ '--selection-color': currentColor } as React.CSSProperties}><i/><span>COLOR DIRECTION</span></div><div><small>MY CURRENT DIRECTION</small><h3>{project.system}</h3><b>{project.color}</b><p>{project.priority}</p><ul>{project.upgrades.map((item) => <li key={item}>{item}</li>)}</ul><Link href={`/customize?system=${encodeURIComponent(project.system)}&color=${encodeURIComponent(project.color)}`}>OPEN FULL ROOF CONFIGURATOR →</Link></div></aside>
         </div>}
+
+        {view === 'proposals' && <ProposalCompare projectName={project.project} customer={project.customer} />}
 
         {view === 'documents' && <div className="customer-view customer-documents">
           <header className="customer-view-intro"><div><small>PERMANENT ROOF RECORD</small><h3>Know what you should have.</h3></div><p>This prototype tracks whether you marked a document received. It does not upload, store, verify, or display actual documents.</p></header>

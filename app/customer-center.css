@@ -205,7 +205,7 @@
   background: #f0f3ee;
   color: #111713;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .customer-center-tabs > button {
@@ -1462,7 +1462,7 @@
 
   .customer-center-tabs {
     overflow-x: auto;
-    grid-template-columns: repeat(5, minmax(130px, 1fr));
+    grid-template-columns: repeat(6, minmax(130px, 1fr));
   }
 
   .customer-view-intro {
