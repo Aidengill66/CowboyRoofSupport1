@@ -1,3 +1,9 @@
-'use client';
-import { useState } from 'react';
-export default function Rewards(){const [points,setPoints]=useState(250);const [caught,setCaught]=useState(0);const play=()=>{setCaught(x=>x+1);setPoints(x=>x+25)};return <main><section className="page-hero rewards-hero"><div><p className="eyebrow light">COWBOY REWARDS</p><h1>Good roofs.<br/>Better perks.</h1></div><p>Turn useful actions into points—learning your roof, building a plan, referring a neighbor, or catching the leak in our quick game.</p></section><section className="rewards-shell shell"><div className="points-side"><p className="eyebrow">YOUR PROTOTYPE WALLET</p><h2>{points.toLocaleString()} <small>PTS</small></h2><div className="points-track"><i style={{width:`${Math.min(points/10,100)}%`}}/></div><p>{Math.max(1000-points,0)} points until Trail Boss tier</p><div className="earn-grid"><span><b>+50</b>BUILD A ROOF PLAN</span><span><b>+100</b>COMPLETE INSPECTION</span><span><b>+250</b>REFER A NEIGHBOR</span><span><b>+25</b>CATCH A LEAK</span></div></div><div className="leak-game"><div className="game-top"><span>QUICK GAME / LEAK WRANGLER</span><b>{caught} CAUGHT</b></div><div className="game-field"><span className="game-cloud">☁</span><div className="game-house"><i/><i/></div><button onClick={play} className="game-drop">◆</button></div><div className="game-bottom"><p>Catch the moving drop before it hits the roof.</p><button onClick={play}>CATCH LEAK +25 →</button></div></div></section><section className="tier-section"><div className="shell"><p className="eyebrow light">THE REWARD TRAIL</p><h2>Every tier opens something better.</h2><div>{[['250','RANCH HAND','Early drop access'],['1,000','TRAIL BOSS','Annual roof check + gear perk'],['2,500','HIGH COUNTRY','Priority storm scheduling'],['5,000','FOUNDERS CIRCLE','Signature gift + family-company perks']].map(x=><article key={x[1]}><span>{x[0]} PTS</span><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</div><small>Prototype reward program. Final earning rules, availability, and benefit terms will be published before launch.</small></div></section></main>}
+import type { Metadata } from 'next';
+import { RewardsCommandCenter } from '../components/RewardsCommandCenter';
+
+export const metadata: Metadata = {
+  title: 'Cowboy Rewards',
+  description: 'Explore the Cowboy Roof Support prototype reward wallet, Roof IQ safety challenge, Leak Wrangler game, missions, achievements, and tier trail.',
+};
+
+export default function RewardsPage(){return <main className="rewards-command-page"><RewardsCommandCenter/></main>}

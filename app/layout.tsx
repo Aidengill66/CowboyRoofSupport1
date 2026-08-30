@@ -11,6 +11,7 @@ import './customer-center.css';
 import './cowboy-theme.css';
 import './experience-upgrade.css';
 import './marketplace-upgrade.css';
+import './rewards-upgrade.css';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { PageIdentityLayer } from './components/PageIdentityLayer';
 import { InteractionLayer } from './components/InteractionLayer';
