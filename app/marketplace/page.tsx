@@ -1,16 +1,11 @@
-'use client';
-import Link from 'next/link';
-import { useState } from 'react';
+import type { Metadata } from 'next';
+import { MarketplaceWorkbench } from '../components/MarketplaceWorkbench';
 
-const products = [
-  ['The Ranch','Roof systems','Architectural shingle','$$','charcoal'],['Blue Ridge','Roof systems','Designer shingle','$$$','slate'],['The Stockman','Roof systems','Standing seam metal','$$$$','metal'],['High Noon','Roof systems','Solar-ready system','$$$$','solar'],
-  ['Trail Guard','Performance','Water barrier package','From $850','barrier'],['Air Rider','Performance','Ventilation upgrade','From $1,200','air'],['Rain Boss','Performance','Seamless gutter system','From $2,400','rain'],['Storm Kit','Performance','Homeowner storm gear','$59','storm'],
-  ['Trail Boss Hat','Field goods','Felt hat + copper roof pin','$125','hat'],['Ridgewalker Boots','Field goods','Western work boot','$189','boots'],['High Country Tee','Field goods','Heavyweight field tee','$38','tee'],['Roofline Buckle','Field goods','Numbered brass edition','$72','buckle'],
-];
-export default function Marketplace(){
-  const [filter,setFilter]=useState('All'); const [project,setProject]=useState<string[]>([]); const [sent,setSent]=useState(false);
-  const visible=filter==='All'?products:products.filter(p=>p[1]===filter);
-  const toggle=(name:string)=>setProject(now=>now.includes(name)?now.filter(x=>x!==name):[...now,name]);
-  const brief=encodeURIComponent(`Cowboy Marketplace project list:\n${project.map(x=>`- ${x}`).join('\n')}\n\nPlease help me with the next step.`);
-  return <main><section className="page-hero market-hero"><div><p className="eyebrow light">THE COWBOY MARKETPLACE</p><h1>Click it.<br/>Build your list.</h1></div><p>Every product card is now a real choice. Select roof systems, performance upgrades, or field goods; your project list stays visible and ready to send.</p></section><section className="market-shell shell"><div className="market-toolbar"><div>{['All','Roof systems','Performance','Field goods'].map(x=><button className={filter===x?'selected':''} key={x} onClick={()=>setFilter(x)}>{x}</button>)}</div><span>{visible.length} PRODUCTS · {project.length} SELECTED</span></div><div className="catalog-grid">{visible.map(p=><article key={p[0]} className={project.includes(p[0])?'chosen':''} role="button" tabIndex={0} onClick={()=>toggle(p[0])} onKeyDown={(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(p[0])}}}><div className={`catalog-art ${p[4]}`}><span/><button aria-label={`${project.includes(p[0])?'Remove':'Add'} ${p[0]}`} onClick={(e)=>{e.stopPropagation();toggle(p[0])}}>{project.includes(p[0])?'✓':'+'}</button><small>{p[3]}</small></div><div className="catalog-info"><small>{p[1]} / {p[2]}</small><h2>{p[0]}</h2><p>{p[1]==='Field goods'?'Built for early starts, long days, and Cowboy supporters.':'A field-reviewed option available to add to your project plan.'}</p><button onClick={(e)=>{e.stopPropagation();toggle(p[0])}}>{project.includes(p[0])?'REMOVE FROM LIST':'ADD TO PROJECT'} →</button></div></article>)}</div>{project.length>0&&<div className="project-tray"><div><small>YOUR PROJECT LIST</small><b>{project.length} {project.length===1?'ITEM':'ITEMS'} READY</b><p>{project.slice(0,3).join(' · ')}{project.length>3?` +${project.length-3} more`:''}</p></div><div><button onClick={()=>setProject([])}>CLEAR</button><a href={`mailto:hello@cowboyroofsupport.com?subject=My Cowboy project list&body=${brief}`} onClick={()=>setSent(true)}>{sent?'EMAIL READY ✓':'SEND MY LIST →'}</a></div></div>}</section><section className="market-banner"><span>NEW DROPS</span><h2>Roof alerts. Gear drops. No clutter.</h2><form onSubmit={(e)=>e.preventDefault()}><input type="email" required autoComplete="email" aria-label="Email address for optional roof and marketplace alerts" placeholder="EMAIL ADDRESS"/><button>JOIN THE LIST →</button></form><small>Optional marketing only. Consent is not a condition of purchase. Unsubscribe any time. Prototype signup—delivery will connect after the notification service and privacy controls are configured. <Link href="/legal#privacy">PRIVACY →</Link></small></section></main>;
+export const metadata: Metadata = {
+  title: 'Cowboy Marketplace',
+  description: 'Compare roof systems, performance upgrades, storm-readiness products, and Cowboy field goods in one interactive project workbench.',
+};
+
+export default function MarketplacePage() {
+  return <main className="marketplace-page"><MarketplaceWorkbench /></main>;
 }
